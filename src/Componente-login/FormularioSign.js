@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import "react-datepicker/dist/react-datepicker.css";
 class FormularioSign extends React.Component {
   state = {
     ci: "",
