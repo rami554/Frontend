@@ -1,9 +1,7 @@
 import React from "react";
 import axios from "axios";
-class FormularioSign extends React.Component {
+class FormularioSignPeople extends React.Component {
   state = {
-    correo: "",
-    telefono: "",
     username: "",
     password: ""
   };
@@ -12,10 +10,11 @@ class FormularioSign extends React.Component {
       [e.target.name]: e.target.value
     });
   };
+
   submitHandler = e => {
     e.preventDefault();
     axios
-      .put("https://localhost:44356/api/", this.state)
+      .post("https://jsonplaceholder.typicode.com/posts", this.state)
       .then(response => {
         console.log(response);
       })
@@ -28,24 +27,7 @@ class FormularioSign extends React.Component {
   render() {
     return (
       <div>
-        EDITAR TU CUENTA
         <form onSubmit={this.submitHandler}>
-          <br></br>
-          <input
-            type='mail'
-            name='correo'
-            placeholder='Correo'
-            value={this.state.correo}
-            onChange={e => this.change(e)}
-          ></input>
-          <br></br>
-          <input
-            type='number'
-            name='telefono'
-            placeholder='Telefono'
-            value={this.state.teléfono}
-            onChange={e => this.change(e)}
-          ></input>
           <br></br>
           <input
             name='username'
@@ -62,12 +44,10 @@ class FormularioSign extends React.Component {
             onChange={e => this.change(e)}
           ></input>
           <br></br>
-          <br></br>
-          <br></br>
-          <button type='submit'>Actualizar datos</button>
+          <button type='submit'>Registrar datos de cuenta</button>
         </form>
       </div>
     );
   }
 }
-export default FormularioSign;
+export default FormularioSignPeople;
