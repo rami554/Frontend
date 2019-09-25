@@ -2,26 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="08cea132-21d7-4c79-b6fd-e99fe6cf4f7d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/component/Componente-About/About" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/Componente-Contactos/Contactos.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/Componente-Home/Home" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/Componente-Planes/Planes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/cine1.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Componente-login/FormularioLogin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Componente-login/FormularioLogin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Componente-login/FormularioSign.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Componente-login/FormularioSign.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Componente-login/Sign_Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Componente-login/Sign_Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/componente-menu/EpicMenu.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/componente-menu/Menu.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/componente-menu/EpicMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/componente-menu/Menu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/componente-menu/search-icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/componente-menu/search-icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/serviceWorker.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/serviceWorker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Componente-About/About" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Componente-Contactos/Contactos.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Componente-Home/Home" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Componente-Planes/Planes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Componente-login/FormularioLogin.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Componente-login/FormularioSign.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Componente-login/Sign_Login.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/componente-menu/Menu.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/componente-menu/Menu.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/componente-menu/search-icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -119,7 +112,7 @@
       <workItem from="1568735174433" duration="3057000" />
       <workItem from="1568852303704" duration="3721000" />
       <workItem from="1568856365788" duration="803000" />
-      <workItem from="1569332532405" duration="4163000" />
+      <workItem from="1569332532405" duration="7169000" />
     </task>
     <servers />
   </component>
