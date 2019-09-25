@@ -8,9 +8,7 @@ class FormularioSign extends React.Component {
     genero: "",
     correo: "",
     fecha_nac: "",
-    telefono: ""
-  };
-  state2 = {
+    telefono: "",
     username: "",
     password: ""
   };
@@ -23,7 +21,15 @@ class FormularioSign extends React.Component {
   submitHandler = e => {
     e.preventDefault();
     axios
-      .post("https://localhost:44356/api/People", this.state)
+      .post(
+        "https://localhost:44356/api/People",
+        this.state.nombre,
+        this.state.apellido,
+        this.state.genero,
+        this.state.correo,
+        this.state.fecha_nac,
+        this.state.telefono
+      )
       .then(response => {
         console.log(response);
       })
@@ -32,7 +38,11 @@ class FormularioSign extends React.Component {
       });
     console.log(this.state);
     axios
-      .post("https://localhost:44356/api/Users", this.state2)
+      .post(
+        "https://localhost:44356/api/Users",
+        this.state.username,
+        this.state.password
+      )
       .then(response => {
         console.log(response);
       })
@@ -105,7 +115,7 @@ class FormularioSign extends React.Component {
           <input
             name='username'
             placeholder='Nombre de Usuario'
-            value={this.state2.username}
+            value={this.stateus.username}
             onChange={e => this.change(e)}
           ></input>
           <br></br>
@@ -113,7 +123,7 @@ class FormularioSign extends React.Component {
             type='password'
             name='password'
             placeholder='Password'
-            value={this.state2.password}
+            value={this.stateus.password}
             onChange={e => this.change(e)}
           ></input>
           <br></br>
