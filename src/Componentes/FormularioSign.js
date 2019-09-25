@@ -22,13 +22,13 @@ class FormularioSign extends React.Component {
     e.preventDefault();
     axios
       .post("https://localhost:44356/api/People", {
-        ci: this.state.ci,
-        nombre: this.state.nombre,
-        apellido: this.state.apellido,
-        genero: this.state.genero,
-        correo: this.state.correo,
-        fecha_nac: this.state.fecha_nac,
-        telefono: this.state.telefono
+        document: this.state.ci,
+        first_name: this.state.nombre,
+        last_name: this.state.apellido,
+        gender: this.state.genero,
+        email: this.state.correo,
+        birth_date: this.state.fecha_nac,
+        phone_number: this.state.telefono
       })
       .then(response => {
         console.log(response);
