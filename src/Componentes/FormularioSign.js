@@ -21,15 +21,15 @@ class FormularioSign extends React.Component {
   submitHandler = e => {
     e.preventDefault();
     axios
-      .post(
-        "https://localhost:44356/api/People",
-        this.state.nombre,
-        this.state.apellido,
-        this.state.genero,
-        this.state.correo,
-        this.state.fecha_nac,
-        this.state.telefono
-      )
+      .post("https://localhost:44356/api/People", {
+        ci: this.state.ci,
+        nombre: this.state.nombre,
+        apellido: this.state.apellido,
+        genero: this.state.genero,
+        correo: this.state.correo,
+        fecha_nac: this.state.fecha_nac,
+        telefono: this.state.telefono
+      })
       .then(response => {
         console.log(response);
       })
@@ -38,11 +38,10 @@ class FormularioSign extends React.Component {
       });
     console.log(this.state);
     axios
-      .post(
-        "https://localhost:44356/api/Users",
-        this.state.username,
-        this.state.password
-      )
+      .post("https://localhost:44356/api/Users", {
+        username: this.state.username,
+        password: this.state.password
+      })
       .then(response => {
         console.log(response);
       })
