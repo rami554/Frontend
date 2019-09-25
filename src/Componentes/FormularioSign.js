@@ -114,7 +114,7 @@ class FormularioSign extends React.Component {
           <input
             name='username'
             placeholder='Nombre de Usuario'
-            value={this.stateus.username}
+            value={this.state.username}
             onChange={e => this.change(e)}
           ></input>
           <br></br>
@@ -122,7 +122,7 @@ class FormularioSign extends React.Component {
             type='password'
             name='password'
             placeholder='Password'
-            value={this.stateus.password}
+            value={this.state.password}
             onChange={e => this.change(e)}
           ></input>
           <br></br>
