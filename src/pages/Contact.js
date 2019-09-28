@@ -5,7 +5,17 @@ class Contact extends React.Component {
     return (
       <div>
         <h1>Contact</h1>
-        <div>Form...</div>
+        <form>
+          <div>
+              Nombre:
+            <input type="text" name="name" />
+          </div>
+          <div>
+              Comentario:
+            <input type="text" name="coment" />
+          </div>
+            <input type="submit" value="Enviar" />
+        </form>
       </div>
     );
   }
