@@ -38,7 +38,7 @@ class FormularioSign extends React.Component {
       });
     console.log(this.state);
     axios
-      .post("https://localhost:44356/api/Users", {
+      .post("https://localhost:44356/api/User", {
         username: this.state.username,
         password: this.state.password
       })
