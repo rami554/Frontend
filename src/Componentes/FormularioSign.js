@@ -5,7 +5,7 @@ class FormularioSign extends React.Component {
     ci: "",
     nombre: "",
     apellido: "",
-    genero: "",
+    genero: "Hombre",
     correo: "",
     fecha_nac: "",
     telefono: "",

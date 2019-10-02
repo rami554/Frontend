@@ -14,18 +14,17 @@ class FormularioLogin extends React.Component {
 
   submitHandler = e => {
     e.preventDefault();
+
     axios
-      .post("https://localhost:44356/api/Auth", this.state)
-      .then(res => {
-        const token = res.data.token;
-        localStorage.setItem("jwtToken", token);
-        console.log(token);
-      })
+      .post("https://localhost:44356/api/myLogin", this.state)
+      .then(res => localStorage.setItem("data", res.data))
+      .then(console.log(localStorage.getItem("data")))
       .catch(error => {
         console.log(error);
       });
     console.log(this.state);
   };
+  loginHandler() {}
   render() {
     return (
       <div>
