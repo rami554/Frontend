@@ -7,14 +7,14 @@ class Contact extends React.Component {
         <h1>Contact</h1>
         <form>
           <div>
-              Nombre:
-            <input type="text" name="name" />
+            Nombre:
+            <input type='text' name='name' />
           </div>
           <div>
-              Comentario:
-            <input type="text" name="coment" />
+            Comentario:
+            <input type='text' name='coment' />
           </div>
-            <input type="submit" value="Enviar" />
+          <input type='submit' value='Enviar' />
         </form>
       </div>
     );

@@ -51,6 +51,7 @@ class AgregarCine extends React.Component {
             value={this.state.address}
             onChange={e => this.change(e)}
           ></input>
+          <br></br>
           <input
             type='text'
             name='email'
@@ -58,6 +59,7 @@ class AgregarCine extends React.Component {
             value={this.state.email}
             onChange={e => this.change(e)}
           ></input>
+          <br></br>
           <input
             type='text'
             name='phone'
@@ -65,6 +67,7 @@ class AgregarCine extends React.Component {
             value={this.state.phone}
             onChange={e => this.change(e)}
           ></input>
+          <br></br>
           <input
             type='text'
             name='name'
@@ -72,6 +75,7 @@ class AgregarCine extends React.Component {
             value={this.state.name}
             onChange={e => this.change(e)}
           ></input>
+          <br></br>
           <input
             type='text'
             name='googlemaps'
@@ -79,6 +83,7 @@ class AgregarCine extends React.Component {
             value={this.state.googlemaps}
             onChange={e => this.change(e)}
           ></input>
+          <br></br>
           <input
             type='text'
             name='picture'
@@ -86,6 +91,7 @@ class AgregarCine extends React.Component {
             value={this.state.picture}
             onChange={e => this.change(e)}
           ></input>
+          <br></br>
           <input
             type='text'
             name='website'

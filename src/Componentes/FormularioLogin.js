@@ -1,12 +1,9 @@
 import React from "react";
 import axios from "axios";
-
 class FormularioLogin extends React.Component {
   state = {
     username: "",
     password: "",
-    id: "",
-    nombre: "",
     rol: ""
   };
   change = e => {
@@ -16,10 +13,9 @@ class FormularioLogin extends React.Component {
   };
   getdata() {
     const datos = JSON.parse(localStorage.getItem("data"));
-    this.state.rol_id = datos[0].rol_id;
-    if (this.state.rol_id == 1) {
-    } else {
-    }
+    localStorage.setItem("rol", datos[0].rol_id);
+    const rols = datos[0].rol_id;
+    console.log(rols);
   }
   submitHandler = e => {
     e.preventDefault();
@@ -30,6 +26,14 @@ class FormularioLogin extends React.Component {
       })
       .then(res => localStorage.setItem("data", res.data))
       .then(this.getdata)
+      .then(() => {
+        if (localStorage.getItem("rol") == "2") {
+          this.props.history.push("/");
+        }
+        if (localStorage.getItem("rol") == "1") {
+          this.props.history.push("/admin");
+        }
+      })
       .catch(error => {
         console.log(error);
       });
@@ -37,33 +41,37 @@ class FormularioLogin extends React.Component {
   };
   loginHandler() {}
   render() {
-    return (
-      <div>
-        INICIAR SESION
-        <form onSubmit={this.submitHandler}>
-          <br></br>
-          <input
-            type='text'
-            name='username'
-            placeholder='Nombre de Usuario'
-            value={this.state.username}
-            onChange={e => this.change(e)}
-          />
-          <br></br>
-          <input
-            type='password'
-            name='password'
-            placeholder='Password'
-            value={this.state.password}
-            onChange={e => this.change(e)}
-          ></input>
-          <br></br>
-          <br></br>
-          <br></br>
-          <button type='submit'>Iniciar Sesión</button>
-        </form>
-      </div>
-    );
+    if (localStorage.getItem("rol") == null) {
+      return (
+        <div>
+          INICIAR SESION
+          <form onSubmit={this.submitHandler}>
+            <br></br>
+            <input
+              type='text'
+              name='username'
+              placeholder='Nombre de Usuario'
+              value={this.state.username}
+              onChange={e => this.change(e)}
+            />
+            <br></br>
+            <input
+              type='password'
+              name='password'
+              placeholder='Password'
+              value={this.state.password}
+              onChange={e => this.change(e)}
+            ></input>
+            <br></br>
+            <br></br>
+            <br></br>
+            <button type='submit'>Iniciar Sesión</button>
+          </form>
+        </div>
+      );
+    } else {
+      return <div>{(localStorage.clear(), this.props.history.push("/"))}</div>;
+    }
   }
 }
 export default FormularioLogin;

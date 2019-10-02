@@ -7,6 +7,7 @@ class ListarCines extends Component {
     axios
       .get("https://localhost:44356/api/Cinema")
       .then(res => localStorage.setItem("listaCines", res.data))
+      .then()
       .catch(error => {
         console.log(error);
       });
