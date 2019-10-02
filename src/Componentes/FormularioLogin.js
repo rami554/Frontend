@@ -4,21 +4,32 @@ import axios from "axios";
 class FormularioLogin extends React.Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    id: "",
+    nombre: "",
+    rol: ""
   };
   change = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
   };
-
+  getdata() {
+    const datos = JSON.parse(localStorage.getItem("data"));
+    this.state.rol_id = datos[0].rol_id;
+    if (this.state.rol_id == 1) {
+    } else {
+    }
+  }
   submitHandler = e => {
     e.preventDefault();
-
     axios
-      .post("https://localhost:44356/api/myLogin", this.state)
+      .post("https://localhost:44356/api/myLogin", {
+        username: this.state.username,
+        password: this.state.password
+      })
       .then(res => localStorage.setItem("data", res.data))
-      .then(console.log(localStorage.getItem("data")))
+      .then(this.getdata)
       .catch(error => {
         console.log(error);
       });
