@@ -22,7 +22,7 @@ class EditarCine extends React.Component {
   submitHandler = e => {
     e.preventDefault();
     axios
-      .put(this.state.oname, "https://localhost:44356/api/Cinema", {
+      .put("https://localhost:44356/api/Cinema",this.state.oname, {
         address: this.state.address,
         email: this.state.email,
         phone: this.state.phone,
