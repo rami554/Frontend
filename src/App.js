@@ -12,7 +12,6 @@ import FormularioLogin from "./Componentes/FormularioLogin";
 import FormularioSign from "./Componentes/FormularioSign";
 import Admin from "./Componentes/Admin";
 import Logout from "./Componentes/Logout";
-
 class App extends Component {
   render() {
     return (

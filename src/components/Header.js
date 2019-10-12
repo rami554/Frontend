@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import logo from "./logo.png";
 // class component
 class Header extends React.Component {
-  render() {
+  render(){
     if (localStorage.getItem("rol") == null) {
       return (
         <header>
@@ -20,7 +20,7 @@ class Header extends React.Component {
         </header>
       );
     } else {
-      return (
+       return (
         <header>
           <h2>Bienvenido al Mejor sitio de peliculas</h2>
           <nav className='nav'>
