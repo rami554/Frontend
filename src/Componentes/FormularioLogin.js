@@ -19,6 +19,7 @@ class FormularioLogin extends React.Component {
   getdata() {
     const datos = JSON.parse(localStorage.getItem("data"));
     localStorage.setItem("rol", datos[0].rol_id);
+    localStorage.setItem("isLogged", "true");
     const rols = datos[0].rol_id;
     console.log(rols);
   }
@@ -52,7 +53,7 @@ class FormularioLogin extends React.Component {
         .then(this.getdata)
         .then(() => {
           if (localStorage.getItem("rol") == "2") {
-            this.props.history.push("/");
+            this.props.history.push("/perfil");
           }
           if (localStorage.getItem("rol") == "1") {
             this.props.history.push("/admin");
@@ -104,7 +105,7 @@ class FormularioLogin extends React.Component {
         </div>
       );
     } else {
-      return <div>{(localStorage.clear(), this.props.history.push("/"))}</div>;
+      return <div>{(this.props.history.push("/"), localStorage.clear())}</div>;
     }
   }
 }

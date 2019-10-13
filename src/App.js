@@ -12,6 +12,8 @@ import FormularioLogin from "./Componentes/FormularioLogin";
 import FormularioSign from "./Componentes/FormularioSign";
 import Admin from "./Componentes/Admin";
 import Logout from "./Componentes/Logout";
+import Perfil from "./Componentes/Perfil";
+import FormularioEditCuenta from "./Componentes/FormularioEditCuenta";
 class App extends Component {
   render() {
     return (
@@ -32,6 +34,8 @@ class App extends Component {
             <Route path='/login' component={FormularioLogin} />
             <Route path='/logout' component={Logout} />
             <Route path='/admin' component={Admin} />
+            <Route path='/perfil' component={Perfil} />
+            <Route path='/editcuenta' component={FormularioEditCuenta} />
           </Switch>
 
           <Footer />
