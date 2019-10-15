@@ -19,7 +19,7 @@ class FormularioLogin extends React.Component {
   getdata() {
     const datos = JSON.parse(localStorage.getItem("data"));
     localStorage.setItem("rol", datos[0].rol_id);
-    localStorage.setItem("isLogged", "true");
+    localStorage.setItem("isLogged", true);
     const rols = datos[0].rol_id;
     console.log(rols);
   }

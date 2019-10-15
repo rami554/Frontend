@@ -227,6 +227,7 @@ class FormularioSign extends React.Component {
           <div style={{ fontSize: 12, color: "red" }}>
             {this.state.passwordError}
           </div>
+
           <br></br>
 
           <button type='submit'>Registrarme</button>
