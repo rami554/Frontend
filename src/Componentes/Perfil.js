@@ -9,6 +9,8 @@ class Perfil extends React.Component {
     console.log("Se va a montar");
     if (localStorage.getItem("isLogged")) {
       this.getData();
+    } else {
+      this.props.history.push("/");
     }
   }
   getData() {
