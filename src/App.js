@@ -18,6 +18,9 @@ import contratos from "./pages/contratos";
 import incontratos from "./pages/incontratos";
 import ListarCines from "./Componentes/ListarCines";
 import EditarCine from "./Componentes/EditarCine";
+import AgregarCine from "./Componentes/AgregarCine";
+import RecuperarContrasena from "./Componentes/RecuperarContrasena";
+import NuevaContraseña from "./Componentes/NuevaContraseña";
 class App extends Component {
   render() {
     return (
@@ -26,7 +29,6 @@ class App extends Component {
           <div class='row justify-content-center'>
             <Header />
           </div>
-
           <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/about' component={About} />
@@ -44,6 +46,9 @@ class App extends Component {
             <Route path='/listarCines' component={ListarCines} />
             <Route path='/editCine' component={EditarCine} />
             <Route path='/regcontratos' component={incontratos} />
+            <Route path='/aggcine' component={AgregarCine} />
+            <Route path='/recpass' component={RecuperarContrasena} />
+            <Route path='/newpass' component={NuevaContraseña} />
           </Switch>
 
           <Footer />

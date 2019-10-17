@@ -53,7 +53,6 @@ class ListarCines extends Component {
                 <ListGroup.Item variant='info'>E-Mail</ListGroup.Item>
               </Col>
               <Col></Col>
-              <Col></Col>
             </Row>
             {this.state.cines.map(cine => (
               <Row>

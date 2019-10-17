@@ -131,6 +131,7 @@ class EditarCine extends React.Component {
         .catch(error => {
           console.log(error);
         });
+      this.props.history.push("/listarcines");
     }
   };
 

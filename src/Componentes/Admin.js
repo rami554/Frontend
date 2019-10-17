@@ -7,6 +7,12 @@ class Admin extends React.Component {
   ListarCines() {
     this.props.history.push("/listarCines");
   }
+  agregarCine() {
+    this.props.history.push("/aggcine");
+  }
+  listarContratos() {
+    this.props.history.push("/contratos");
+  }
   render() {
     if (localStorage.getItem("rol") == "1") {
       return (
@@ -31,7 +37,7 @@ class Admin extends React.Component {
                 <Button
                   variant='warning'
                   onClick={() => {
-                    this.editPerfil();
+                    this.agregarCine();
                   }}
                 >
                   Agregar Cine
@@ -44,7 +50,7 @@ class Admin extends React.Component {
                 <Button
                   variant='info'
                   onClick={() => {
-                    this.inicio();
+                    this.listarContratos();
                   }}
                 >
                   Ver estado de contratos

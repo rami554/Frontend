@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-
+import { Link } from "react-router-dom";
 const initialState = {
   username: "",
   password: "",
@@ -68,7 +68,6 @@ class FormularioLogin extends React.Component {
       this.setState(initialState);
     }
   };
-
   render() {
     if (localStorage.getItem("rol") == null) {
       return (
@@ -101,10 +100,10 @@ class FormularioLogin extends React.Component {
             <div style={{ fontSize: 12, color: "red" }}>
               {this.state.passwordError}
             </div>
-            <br></br>
             <div style={{ fontSize: 12, color: "red" }}>
               {this.state.genError}
             </div>
+            <Link to='/recpass'>Olvidaste tu contraseña?</Link>
             <br></br>
             <button type='submit'>Iniciar Sesión</button>
           </form>

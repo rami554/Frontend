@@ -54,6 +54,9 @@ class FormularioSign extends React.Component {
     let usernameError;
     let telefonoError;
     let correoError;
+    if (this.state.password != this.state.confpassword) {
+      passwordError = "Las contraseñas deben ser iguales";
+    }
     if (!this.state.username) {
       usernameError = "Este campo no puede estar vacio";
     }
