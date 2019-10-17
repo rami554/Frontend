@@ -6,7 +6,8 @@ const initialState = {
   password: "",
   rol: "",
   usernameError: "",
-  passwordError: ""
+  passwordError: "",
+  genError: ""
 };
 
 class FormularioLogin extends React.Component {
@@ -60,7 +61,9 @@ class FormularioLogin extends React.Component {
           }
         })
         .catch(error => {
-          console.log(error);
+          const genError = error.response.data.Message;
+          console.log(genError);
+          this.setState({ genError });
         });
       this.setState(initialState);
     }
@@ -99,6 +102,9 @@ class FormularioLogin extends React.Component {
               {this.state.passwordError}
             </div>
             <br></br>
+            <div style={{ fontSize: 12, color: "red" }}>
+              {this.state.genError}
+            </div>
             <br></br>
             <button type='submit'>Iniciar Sesión</button>
           </form>

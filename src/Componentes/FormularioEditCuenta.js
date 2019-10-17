@@ -15,7 +15,11 @@ class FormularioSign extends React.Component {
     username: "",
     password: "",
     confpassword: "",
-    passwordError: ""
+    passwordError: "",
+    correoError: "",
+    telefonoError: "",
+    usernameError: "",
+    id: ""
   };
   componentDidMount() {
     this.setState(this.passwordError);
@@ -31,8 +35,9 @@ class FormularioSign extends React.Component {
     const correo = data[0].email;
     const password = data[0].password;
     const rol = data[0].rol;
+    const id = data[0].user_id;
     console.log(username);
-    this.setState({ username, rol, telefono, correo, password });
+    this.setState({ username, rol, telefono, correo, password, id });
   }
   logout() {
     if (!this.state.isLogged) {
@@ -44,22 +49,54 @@ class FormularioSign extends React.Component {
       [e.target.name]: e.target.value
     });
   };
+  validar() {
+    let passwordError;
+    let usernameError;
+    let telefonoError;
+    let correoError;
+    if (!this.state.username) {
+      usernameError = "Este campo no puede estar vacio";
+    }
+    if (!this.state.telefono) {
+      telefonoError = "Este campo no puede estar vacio";
+    }
+    if (!this.state.correo) {
+      correoError = "Este campo no puede estar vacio";
+    }
+    if (!this.state.password) {
+      passwordError = "Este campo no puede estar vacio";
+    }
+    if (passwordError || usernameError || correoError || telefonoError) {
+      this.setState({
+        passwordError,
+        usernameError,
+        correoError,
+        telefonoError
+      });
+      return false;
+    }
+    return true;
+  }
   submitHandler = e => {
     e.preventDefault();
-    if (this.state.password == this.state.confpassword) {
+    let isValid = this.validar();
+    if (isValid) {
+      const id = this.state.id;
+      console.log(id);
       axios
-        .put("https://localhost:44356/api/", this.state)
+        .put(`https://localhost:44356/api/CustomUser/${id}`, {
+          username: this.state.username,
+          password: this.state.password,
+          phone_number: this.state.telefono,
+          email: this.state.email
+        })
         .then(response => {
           console.log(response);
         })
         .catch(error => {
           console.log(error);
         });
-    } else {
-      const passwordError = "Las contraseñas deben coincidir";
-      this.setState({ passwordError });
     }
-    console.log(this.state);
   };
 
   render() {

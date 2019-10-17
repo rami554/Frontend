@@ -29,17 +29,9 @@ class ListarCines extends Component {
         console.log(error);
       });
   }
-  editar(name) {
-    localStorage.setItem("nameCinema", name);
+  editar(cine) {
+    localStorage.setItem("selectedCinema", JSON.stringify(cine));
     this.props.history.push("/editCine");
-  }
-  borrar(cinema_id) {
-    axios
-      .delete("https://localhost:44356/api/Cinema", cinema_id)
-      .catch(error => {
-        console.log(error);
-      });
-    this.props.history.push("/listarcines");
   }
   render() {
     return (
@@ -82,22 +74,10 @@ class ListarCines extends Component {
                     <Button
                       variant='warning'
                       onClick={() => {
-                        this.editar(cine.name);
+                        this.editar(cine);
                       }}
                     >
                       Editar Cine
-                    </Button>
-                  </ButtonToolbar>
-                </Col>
-                <Col>
-                  <ButtonToolbar>
-                    <Button
-                      variant='danger'
-                      onClick={() => {
-                        this.borrar(cine.cinema_id);
-                      }}
-                    >
-                      Borrar Cine
                     </Button>
                   </ButtonToolbar>
                 </Col>
