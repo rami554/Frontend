@@ -15,6 +15,7 @@ import Logout from "./Componentes/Logout";
 import Perfil from "./Componentes/Perfil";
 import FormularioEditCuenta from "./Componentes/FormularioEditCuenta";
 import contratos from "./pages/contratos";
+import incontratos from "./pages/incontratos";
 import ListarCines from "./Componentes/ListarCines";
 import EditarCine from "./Componentes/EditarCine";
 class App extends Component {
@@ -42,6 +43,7 @@ class App extends Component {
             <Route path='/editcuenta' component={FormularioEditCuenta} />
             <Route path='/listarCines' component={ListarCines} />
             <Route path='/editCine' component={EditarCine} />
+            <Route path='/regcontratos' component={incontratos} />
           </Switch>
 
           <Footer />
