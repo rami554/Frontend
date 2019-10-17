@@ -2,8 +2,17 @@ import React from "react";
 import AgregarCine from "./AgregarCine";
 import EditarCine from "./EditarCine";
 import ListarCines from "./ListarCines";
-import { Container, Button, ButtonToolbar, Row } from "react-bootstrap";
+import { Container, Button, ButtonToolbar, Row, Badge } from "react-bootstrap";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 class Admin extends React.Component {
+  componentDidMount() {
+    if (localStorage.getItem("cuentaCreada")) {
+      this.notify("Cine agregado Exitosamente!");
+      localStorage.removeItem("cuentaCreada");
+    }
+  }
+  notify = texto => toast(texto);
   ListarCines() {
     this.props.history.push("/listarCines");
   }
@@ -17,7 +26,9 @@ class Admin extends React.Component {
     if (localStorage.getItem("rol") == "1") {
       return (
         <div>
-          ADMINISTRADOR DE CINES <br></br>
+          <h3>
+            <Badge variant='primary'> PERFIL DE ADMINISTRADOR</Badge>
+          </h3>
           <Container>
             <Row>
               <ButtonToolbar>
@@ -58,6 +69,7 @@ class Admin extends React.Component {
               </ButtonToolbar>
             </Row>
           </Container>
+          <ToastContainer />
         </div>
       );
     } else {

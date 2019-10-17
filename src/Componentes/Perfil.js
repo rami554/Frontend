@@ -1,18 +1,29 @@
 import React from "react";
 import FormularioEditCuenta from "./FormularioEditCuenta";
 import { Button, Container, Row, ButtonToolbar, Badge } from "react-bootstrap";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 class Perfil extends React.Component {
   state = { username: "", rol: "" };
   componentWillMount() {}
   componentDidMount() {
     console.log("se ha montado");
     console.log("Se va a montar");
+    if (localStorage.getItem("init")) {
+      this.notify("Bienvenido");
+      localStorage.removeItem("init");
+    }
+    if (localStorage.getItem("edited")) {
+      this.notify("Datos editados correctamente");
+      localStorage.removeItem("edited");
+    }
     if (localStorage.getItem("isLogged")) {
       this.getData();
     } else {
       this.props.history.push("/");
     }
   }
+  notify = texto => toast(texto);
   getData() {
     const data = JSON.parse(localStorage.getItem("data"));
     console.log(data);
@@ -77,6 +88,7 @@ class Perfil extends React.Component {
                 </ButtonToolbar>
               </Row>
             </Container>
+            <ToastContainer />
           </div>
         </div>
       );

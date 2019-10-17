@@ -17,7 +17,8 @@ const initialState = {
   telefonoError: "",
   usernameError: "",
   passwordError: "",
-  fecha_nacError: ""
+  fecha_nacError: "",
+  genError: ""
 };
 class FormularioSign extends React.Component {
   state = initialState;
@@ -51,6 +52,9 @@ class FormularioSign extends React.Component {
     if (!this.state.telefono) {
       telefonoError = "Este campo no puede estar vacio";
     }
+    if (!this.state.fecha_nac) {
+      fecha_nacError = "Ingrese fecha de nacimiento";
+    }
     if (!this.state.password) {
       passwordError = "Este campo no puede estar vacio";
     }
@@ -74,7 +78,8 @@ class FormularioSign extends React.Component {
       nombreError ||
       correoError ||
       apellidoError ||
-      telefonoError
+      telefonoError ||
+      fecha_nacError
     ) {
       this.setState({
         passwordError,
@@ -83,7 +88,8 @@ class FormularioSign extends React.Component {
         apellidoError,
         nombreError,
         correoError,
-        telefonoError
+        telefonoError,
+        fecha_nacError
       });
       return false;
     }
@@ -94,35 +100,28 @@ class FormularioSign extends React.Component {
     let esValido = this.validar();
     if (esValido) {
       axios
-        .post("https://localhost:44356/api/People", {
+        .post("https://localhost:44356/api/myUser", {
           document: this.state.ci,
           first_name: this.state.nombre,
           last_name: this.state.apellido,
           gender: this.state.genero,
           email: this.state.correo,
           birth_date: this.state.fecha_nac,
-          phone_number: this.state.telefono
-        })
-        .then(response => {
-          console.log(response);
-        })
-        .catch(error => {
-          console.log(error);
-        });
-      console.log(this.state);
-      axios
-        .post("https://localhost:44356/api/User", {
+          phone_number: this.state.telefono,
           username: this.state.username,
           password: this.state.password
         })
         .then(response => {
           console.log(response);
+          localStorage.setItem("cuentaCreada", true);
+          this.props.history.push("/login");
         })
         .catch(error => {
-          console.log(error);
+          const genError = error.response.data.Message;
+          console.log(genError);
+          this.setState({ genError });
         });
-      console.log(this.state2);
-      this.setState(initialState);
+      console.log(this.state);
     }
   };
 
@@ -227,7 +226,9 @@ class FormularioSign extends React.Component {
           <div style={{ fontSize: 12, color: "red" }}>
             {this.state.passwordError}
           </div>
-
+          <div style={{ fontSize: 12, color: "red" }}>
+            {this.state.genError}
+          </div>
           <br></br>
 
           <button type='submit'>Registrarme</button>

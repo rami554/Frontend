@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   Button,
   Container,
@@ -31,6 +33,7 @@ class EditarCine extends React.Component {
   componentDidMount() {
     this.getData();
   }
+
   getData() {
     const cine = JSON.parse(localStorage.getItem("selectedCinema"));
     const oname = cine.name;
@@ -126,12 +129,13 @@ class EditarCine extends React.Component {
           website: this.state.website
         })
         .then(response => {
+          localStorage.setItem("edited", true);
+          this.props.history.push("/listarcines");
           console.log(response);
         })
         .catch(error => {
           console.log(error);
         });
-      this.props.history.push("/listarcines");
     }
   };
 
@@ -139,7 +143,9 @@ class EditarCine extends React.Component {
     return (
       <div>
         <form onSubmit={this.submitHandler}>
-          <p>EDITAR CINE</p>
+          <h3>
+            <Badge variant='primary'> EDITAR CINE</Badge>
+          </h3>
           <h5>
             <Badge variant='primary'>Nombre</Badge>
           </h5>
@@ -231,7 +237,8 @@ class EditarCine extends React.Component {
           <div style={{ fontSize: 12, color: "red" }}>
             {this.state.websiteError}
           </div>
-          <button type='submit'>Editar Cine</button>
+          <br></br>
+          <Button type='submit'>Editar Cine</Button>
         </form>
       </div>
     );

@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   Button,
   Container,
@@ -24,20 +26,20 @@ export default class RecuperarContrasena extends React.Component {
       [e.target.name]: e.target.value
     });
   };
+  notify = () => toast("Wow so easy !");
   getId() {
     axios
-      .post("https://localhost:44356/api/", {
-        ci: this.state.ci,
-        telf: this.state.telefono
+      .post("https://localhost:44356/api/UserPass", {
+        document: this.state.ci,
+        phone_number: this.state.telefono
       })
       .then(res => {
         const data = JSON.parse(res.data);
-        //const id = data[0].id;
-        //localStorage.setItem("idCambiar", id);
-        console.log(data);
+        localStorage.setItem("idCambiar", data);
+        this.props.history.push("/newpass");
       })
       .catch(error => {
-        const genError = error.response.data.Message;
+        const genError = error.response.data;
         console.log(genError);
         this.setState({ genError });
       });
@@ -62,10 +64,9 @@ export default class RecuperarContrasena extends React.Component {
     e.preventDefault();
     let isValid = this.validar();
     if (isValid) {
-      //this.getId();
+      this.getId();
     }
     //this.props.history.push("/newpass");
-    console.log(this.state);
   };
   render() {
     return (
@@ -102,13 +103,15 @@ export default class RecuperarContrasena extends React.Component {
               <div style={{ fontSize: 12, color: "red" }}>
                 {this.state.telefonoError}
               </div>
-              <div style={{ fontSize: 12, color: "red" }}>
+              <br></br>
+              <div style={{ fontSize: 15, color: "red" }}>
                 {this.state.genError}
               </div>
             </Form.Group>
             <Button variant='primary' type='submit'>
               Submit
             </Button>
+            <ToastContainer />
           </Form>
         </ListGroup>
       </div>

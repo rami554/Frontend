@@ -94,6 +94,8 @@ class FormularioSign extends React.Component {
           email: this.state.email
         })
         .then(response => {
+          localStorage.setItem("edited", true);
+          this.props.history.push("/perfil");
           console.log(response);
         })
         .catch(error => {

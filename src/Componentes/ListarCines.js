@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   Button,
   Container,
@@ -15,8 +17,14 @@ class ListarCines extends Component {
     cines: []
   };
   componentDidMount() {
+    if (localStorage.getItem("edited")) {
+      this.notify("Datos editados correctamente");
+      localStorage.removeItem("edited");
+    }
     this.getCines();
   }
+  notify = texto => toast(texto);
+
   getCines() {
     axios
       .get("https://localhost:44356/api/Cinema")
@@ -84,8 +92,10 @@ class ListarCines extends Component {
             ))}
           </ListGroup>
         </Container>
+        <ToastContainer />
       </div>
     );
   }
+  componentWillUnmount() {}
 }
 export default ListarCines;
