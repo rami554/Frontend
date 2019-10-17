@@ -3,12 +3,12 @@ import axios from "axios";
 const initialState = {
   start_date: "",
   end_date: "",
-  comments: "",
+ // comments: "",
   cinema: "Multicine",
   start_dateError: "",
   end_dateError: "",
   commentsError: "",
-  cinemaError: ""
+ // cinemaError: ""
 };
 class incontratos extends React.Component {
   state = initialState;
@@ -21,7 +21,7 @@ class incontratos extends React.Component {
     let start_dateError= "";
     let end_dateError= "";
     let commentsError= "";
-    let cinemaError= "";
+  //  let cinemaError= "";
 
     if (!this.state.start_date) {
       start_dateError = "Este campo no puede estar vacio";
@@ -32,21 +32,21 @@ class incontratos extends React.Component {
     if (!this.state.comments) {
       commentsError = "Este campo no puede estar vacio";
     }
-    if (!this.state.cinema) {
+ /*   if (!this.state.cinema) {
       cinemaError = "Este campo no puede estar vacio";
-    }
+    }*/
     
     if (
         start_dateError ||
         end_dateError ||
-        commentsError ||
-        cinemaError    
+        commentsError
+       // cinemaError    
     ) {
       this.setState({
         start_dateError,
         end_dateError,
         commentsError,
-        cinemaError
+      //  cinemaError
       });
       return false;
     }
@@ -57,11 +57,11 @@ class incontratos extends React.Component {
     let esValido = this.validar();
     if (esValido) {
       axios
-        .post("https://localhost:44356/api/ContractDetail", {
+        .post("https://localhost:44356/api/ContractDetail/?cinema=Multicine", {
             start_date:this.state.start_date,
             end_date: this.state.end_date,
             comments: this.state.comments,
-            cinema: this.state.cinema
+            //cinema: this.state.cinema
         })
         .then(response => {
           console.log(response);
@@ -113,18 +113,16 @@ class incontratos extends React.Component {
           <div style={{ fontSize: 12, color: "red" }}>
             {this.state.commentsError}
           </div>
-
+{/*}
           <div>Cines</div>
           <select
             name='cinema'
-            value={this.cinema}
-            onChange={e => this.state.change(e)}
-          >
+            value={this.state.cinema}
+            onChange={e => this.state.change(e)}>
             <option value='Hombre'>Multicine</option>
             <option value='Mujer'>Megacenter</option>
             <option value='Otro'>Otro</option>
-          </select>
-          <div></div>
+          </select>*/}
 
           <br></br>
 

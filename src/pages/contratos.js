@@ -1,8 +1,31 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 
 export default class contratos extends Component {
-    render() {
+  constructor(props){
+    super(props);
+    this.state ={
+      contratos:[]
+    }
+  }  
+
+  componentDidMount() {
+    this.getContratos();
+  }
+  getContratos() {
+    axios
+      .get("https://localhost:44356/api/ContractDetail")
+      .then(res => {
+        const contratos = JSON.parse(res.data);
+        this.setState({ contratos });
+        console.log(contratos);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+  render() {
         return (
           <div class="container">
           
@@ -12,27 +35,33 @@ export default class contratos extends Component {
             <table class="table table-bordered order-table ">
               <thead>
                 <tr>
-                  <th>name</th>
-                  <th>Direccion</th>
-                  <th>telefono</th>
-                  <th>Detalle</th>
-                  <th>fecha</th>
+                  <th>Nombre</th>
+                  <th>Fecha de Inicio</th>
+                  <th>Fecha de Culminacion</th>
+                  <th>Estado del contrato</th>
+                  <th>Dias Restantes</th>
                 </tr>
               </thead>
               <tbody id="bodytable">
-                  <tr>
-                    <td>name</td>
-                    <td>Direccion</td>
-                    <td>telefono</td>
-                    <td>Detalle</td>
-                    <td>fecha</td>
-                  </tr>
+                  {this.renderList()}
               </tbody>
             </table>
-
           </div>
         );
     }
+renderList(){
+  return this.state.contratos.map((data)=>{
+    return(
+      <tr>
+        <td>{data.cinema_name}</td>
+        <td>{data.start_date}</td>
+        <td>{data.end_date}</td>
+        <td>{data.estado}</td>
+        <td>{data.time_difference}</td>
+      </tr>
+    )
+  })
+}
 }
 
 if (document.getElementById('contratos')) {

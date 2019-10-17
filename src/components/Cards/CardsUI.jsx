@@ -8,8 +8,9 @@ const Card = props =>{
             </div>
             <div className="card-body text-dark">
                 <h4 className="card-title">{props.title}</h4>
-                <p className="card-text text-secondary">{props.content}</p>
-                <a href="#" className="btn btn-outline-success">Suscribite</a>
+                <p className="card-text">{props.content}</p>
+                <h5 className="card-subtitle">{props.cost}</h5>
+                <a href="/Sign" className="btn btn-outline-success">Suscribite</a>
             </div>
         </div>
     )
