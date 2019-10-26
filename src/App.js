@@ -26,9 +26,10 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <div class='row justify-content-center'>
+          <div className='row justify-content-center'>
             <Header />
           </div>
+          <main style={{marginTop: '80px'}}>
           <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/about' component={About} />
@@ -50,7 +51,7 @@ class App extends Component {
             <Route path='/recpass' component={RecuperarContrasena} />
             <Route path='/newpass' component={NuevaContraseña} />
           </Switch>
-
+          </main>
           <Footer />
         </div>
       </Router>

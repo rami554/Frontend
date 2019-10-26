@@ -1,69 +1,57 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "./logo.png";
-// class component
+import Logo from "./logo.png";
+import style from "../style/menu.css"
+import 'bootstrap/dist/css/bootstrap.min.css'
+// className component
 class Header extends React.Component {
   render() {
     if (localStorage.getItem("rol") == null) {
       return (
-        <header>
-          <h2>Bienvenido al Mejor sitio de peliculas</h2>
-          <div className='row'>
-            <nav className='navbar navbar-defalt'>
-              <li>
-                <a>
-                  <img src={logo} alt='logo' />
-                </a>
-              </li>
-              <li>
-                <a>
-                  <Link to='/'>Home</Link>
-                </a>
-              </li>
-              <li>
-                <a>
-                  <Link to='/about'>About</Link>
-                </a>
-              </li>
-              <li>
-                <a>
-                  <Link to='/contact'>Contact</Link>
-                </a>
-              </li>
-              <li>
-                <a>
-                  <Link to='/planes'>Planes</Link>
-                </a>
-              </li>
-              <li>
-                <a>
-                  <Link to='/Sign'>Sign Up</Link>
-                </a>
-              </li>
-              <li>
-                <a>
-                  <Link to='/Login'>Login</Link>
-                </a>
-              </li>
+          <header className="toolbar">
+            <nav className="toolbar__navigation">
+              <div className="toolbar__logo">
+                <img src={Logo} alt=""/>
+                <a href="#">MoviePass</a>
+              </div>
+              <div className="spacer"></div>
+              <div className="toolbar__navigation-items">
+                <ul>
+                  <li><Link to='/'>Inicio</Link></li>
+                  <li><Link to='/about'>Sobre Nosotros</Link></li>
+                  <li><Link to='/planes'>Planes</Link></li>
+                  <li><Link to='/Login'>Login</Link></li>
+                </ul>
+              </div>
             </nav>
-          </div>
-        </header>
-      );
+            <nav className="toolbar__compliment">
+              <Link to='/Sign'>
+                  <span>Sign Up</span>
+              </Link>
+            </nav>
+          </header>
+    );
     }
     if (localStorage.getItem("rol") == 2) {
       return (
-        <header>
-          <h2>Bienvenido al Mejor sitio de peliculas</h2>
-          <nav className='nav'>
-            <img src={logo} alt='logo' />
-            <Link to='/'>Home</Link>
-            <Link to='/about'>About</Link>
-            <Link to='/contact'>Contact</Link>
-            <Link to='/planes'>Planes</Link>
-            <Link to='/perfil'>Perfil</Link>
-            <Link to='/login'>Logout</Link>
-          </nav>
-        </header>
+          <header className="toolbar">
+            <nav className="toolbar__navigation">
+              <div className="toolbar__logo">
+                <img src={Logo} alt=""/>
+                <a href="#">MoviePass</a>
+              </div>
+              <div className="spacer"></div>
+              <div className="toolbar__navigation-items">
+                <ul>
+                  <li><Link to='/'>Inicio</Link></li>
+                  <li><Link to='/about'>Sobre Nosotros</Link></li>
+                  <li><Link to='/planes'>Planes</Link></li>
+                  <li><Link to='/perfil'>Perfil</Link></li>
+                  <li><Link to='/login'>Logout</Link></li>
+                </ul>
+              </div>
+            </nav>
+          </header>
       );
     }
     if (localStorage.getItem("rol") == 1) {
@@ -71,7 +59,7 @@ class Header extends React.Component {
         <header>
           <h2>Administrador Moviepass</h2>
           <nav className='nav'>
-            <img src={logo} alt='logo' />
+            <img src={Logo} alt='logo' />
             <Link to='listarcines'>Listar Cines</Link>
             <Link to='/aggcine'>Agregar Cines</Link>
             <Link to='/contratos'>Listar Contratos</Link>
