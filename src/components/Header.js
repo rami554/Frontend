@@ -56,17 +56,24 @@ class Header extends React.Component {
     }
     if (localStorage.getItem("rol") == 1) {
       return (
-        <header>
-          <h2>Administrador Moviepass</h2>
-          <nav className='nav'>
-            <img src={Logo} alt='logo' />
-            <Link to='listarcines'>Listar Cines</Link>
-            <Link to='/aggcine'>Agregar Cines</Link>
-            <Link to='/contratos'>Listar Contratos</Link>
-            <Link to='/regcontratos'>Agregar Contratos</Link>
-            <Link to='/login'>Logout</Link>
-          </nav>
-        </header>
+          <header className="toolbar">
+            <nav className="toolbar__navigation">
+              <div className="toolbar__logo">
+                <img src={Logo} alt=""/>
+                <a href="#">MoviePass</a>
+              </div>
+              <div className="spacer"></div>
+              <div className="toolbar__navigation-items">
+                <ul>
+                  <li><Link to='listarcines'>Listar Cines</Link></li>
+                  <li><Link to='/aggcine'>Agregar Cines</Link></li>
+                  <li><Link to='/contratos'>Listar Contratos</Link></li>
+                  <li><Link to='/regcontratos'>Agregar Contratos</Link></li>
+                  <li><Link to='/login'>Logout</Link></li>
+                </ul>
+              </div>
+            </nav>
+          </header>
       );
     }
   }
