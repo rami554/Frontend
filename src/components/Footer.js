@@ -10,7 +10,6 @@ const style = {
 const Footer = props => {
   return (
     <footer style={style}>
-      <p>Creaciones Grupo 8</p>
     </footer>
   );
 };

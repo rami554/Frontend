@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -12,16 +12,24 @@ import FormularioLogin from "./Componentes/FormularioLogin";
 import FormularioSign from "./Componentes/FormularioSign";
 import Admin from "./Componentes/Admin";
 import Logout from "./Componentes/Logout";
-
+import Perfil from "./Componentes/Perfil";
+import FormularioEditCuenta from "./Componentes/FormularioEditCuenta";
+import contratos from "./pages/contratos";
+import incontratos from "./pages/incontratos";
+import ListarCines from "./Componentes/ListarCines";
+import EditarCine from "./Componentes/EditarCine";
+import AgregarCine from "./Componentes/AgregarCine";
+import RecuperarContrasena from "./Componentes/RecuperarContrasena";
+import NuevaContraseña from "./Componentes/NuevaContraseña";
 class App extends Component {
   render() {
     return (
       <Router>
         <div>
-          <div class='row justify-content-center'>
+          <div className='row justify-content-center'>
             <Header />
           </div>
-
+          <main style={{marginTop: '80px'}}>
           <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/about' component={About} />
@@ -33,8 +41,17 @@ class App extends Component {
             <Route path='/login' component={FormularioLogin} />
             <Route path='/logout' component={Logout} />
             <Route path='/admin' component={Admin} />
+            <Route path='/perfil' component={Perfil} />
+            <Route path='/contratos' component={contratos} />
+            <Route path='/editcuenta' component={FormularioEditCuenta} />
+            <Route path='/listarCines' component={ListarCines} />
+            <Route path='/editCine' component={EditarCine} />
+            <Route path='/regcontratos' component={incontratos} />
+            <Route path='/aggcine' component={AgregarCine} />
+            <Route path='/recpass' component={RecuperarContrasena} />
+            <Route path='/newpass' component={NuevaContraseña} />
           </Switch>
-
+          </main>
           <Footer />
         </div>
       </Router>
