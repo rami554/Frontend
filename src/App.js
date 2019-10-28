@@ -21,6 +21,8 @@ import EditarCine from "./Componentes/EditarCine";
 import AgregarCine from "./Componentes/AgregarCine";
 import RecuperarContrasena from "./Componentes/RecuperarContrasena";
 import NuevaContraseña from "./Componentes/NuevaContraseña";
+import Pruebpp from "./Componentes/Paypal";
+import Paypal from "./Componentes/Paypal";
 class App extends Component {
   render() {
     return (
@@ -29,28 +31,29 @@ class App extends Component {
           <div className='row justify-content-center'>
             <Header />
           </div>
-          <main style={{marginTop: '80px'}}>
-          <Switch>
-            <Route exact path='/' component={Home} />
-            <Route path='/about' component={About} />
-            <Route path='/contact' component={Contact} />
-            <Route path='/planes' component={Planes} />
-          </Switch>
-          <Switch>
-            <Route path='/Sign' component={FormularioSign} />
-            <Route path='/login' component={FormularioLogin} />
-            <Route path='/logout' component={Logout} />
-            <Route path='/admin' component={Admin} />
-            <Route path='/perfil' component={Perfil} />
-            <Route path='/contratos' component={contratos} />
-            <Route path='/editcuenta' component={FormularioEditCuenta} />
-            <Route path='/listarCines' component={ListarCines} />
-            <Route path='/editCine' component={EditarCine} />
-            <Route path='/regcontratos' component={incontratos} />
-            <Route path='/aggcine' component={AgregarCine} />
-            <Route path='/recpass' component={RecuperarContrasena} />
-            <Route path='/newpass' component={NuevaContraseña} />
-          </Switch>
+          <main style={{ marginTop: "80px" }}>
+            <Switch>
+              <Route exact path='/' component={Home} />
+              <Route path='/about' component={About} />
+              <Route path='/contact' component={Contact} />
+              <Route path='/planes' component={Planes} />
+            </Switch>
+            <Switch>
+              <Route path='/Sign' component={FormularioSign} />
+              <Route path='/login' component={FormularioLogin} />
+              <Route path='/logout' component={Logout} />
+              <Route path='/admin' component={Admin} />
+              <Route path='/perfil' component={Perfil} />
+              <Route path='/contratos' component={contratos} />
+              <Route path='/editcuenta' component={FormularioEditCuenta} />
+              <Route path='/listarCines' component={ListarCines} />
+              <Route path='/editCine' component={EditarCine} />
+              <Route path='/regcontratos' component={incontratos} />
+              <Route path='/aggcine' component={AgregarCine} />
+              <Route path='/recpass' component={RecuperarContrasena} />
+              <Route path='/newpass' component={NuevaContraseña} />
+              <Route path='/prueba' component={Paypal} />
+            </Switch>
           </main>
           <Footer />
         </div>
