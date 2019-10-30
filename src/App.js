@@ -23,6 +23,7 @@ import RecuperarContrasena from "./Componentes/RecuperarContrasena";
 import NuevaContraseña from "./Componentes/NuevaContraseña";
 import Pruebpp from "./Componentes/Paypal";
 import Paypal from "./Componentes/Paypal";
+import Suscripcion from "./Componentes/Suscripcion";
 class App extends Component {
   render() {
     return (
@@ -52,7 +53,7 @@ class App extends Component {
               <Route path='/aggcine' component={AgregarCine} />
               <Route path='/recpass' component={RecuperarContrasena} />
               <Route path='/newpass' component={NuevaContraseña} />
-              <Route path='/prueba' component={Paypal} />
+              <Route path='/suscripcion' component={Suscripcion} />
             </Switch>
           </main>
           <Footer />

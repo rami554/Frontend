@@ -11,7 +11,13 @@ const Card = props => {
         <h4 className='card-title'>{props.title}</h4>
         <p className='card-text'>{props.content}</p>
         <h5 className='card-subtitle'>{props.cost}</h5>
-        <a href={"/" + props.redirect} className='btn btn-outline-success'>
+        <a
+          href={"/" + props.redirect}
+          className='btn btn-outline-success'
+          onClick={() => {
+            localStorage.setItem("plan_id", props.id);
+          }}
+        >
           Suscríbete
         </a>
       </div>

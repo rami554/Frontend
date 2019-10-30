@@ -12,7 +12,7 @@ class Cards extends Component {
     planes2: [],
     planes3: [],
     isLogged: false,
-    redirect: "Sign"
+    redirect: "login"
   };
   componentDidMount() {
     this.getplanes();
@@ -21,10 +21,10 @@ class Cards extends Component {
     const isLogged = localStorage.getItem("isLogged");
     this.setState({ isLogged });
     if (isLogged) {
-      const redirect = "prueba";
+      const redirect = "suscripcion";
       this.setState({ redirect });
     } else {
-      const redirect = "Sign";
+      const redirect = "login";
       this.setState({ redirect });
     }
   }
@@ -79,6 +79,7 @@ class Cards extends Component {
                 content={planes.details}
                 cost={planes.cost + " Bs"}
                 redirect={this.state.redirect}
+                id={planes.subscription_id}
               />
             </div>
           </div>
@@ -92,6 +93,7 @@ class Cards extends Component {
                 content={planes2.details}
                 cost={planes2.cost + " Bs"}
                 redirect={this.state.redirect}
+                id={planes2.subscription_id}
               />
             </div>
           </div>
@@ -105,6 +107,7 @@ class Cards extends Component {
                 content={planes3.details}
                 cost={planes3.cost + " Bs"}
                 redirect={this.state.redirect}
+                id={planes3.subscription_id}
               />
             </div>
           </div>
