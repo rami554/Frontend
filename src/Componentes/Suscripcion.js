@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Paypal from "./Paypal";
 import axios from "axios";
 import { Table, Badge } from "react-bootstrap";
+import Datos_Suscription from "./Datos_Suscription";
 class Suscripcion extends React.Component {
   state = {
     id_plan: "",
@@ -14,7 +15,11 @@ class Suscripcion extends React.Component {
     apellido: "",
     correo: "",
     telefono: "",
-    costosus: ""
+    costosus: "",
+    userid: "",
+    pagado: true,
+    pago: "",
+    isPayed: true
   };
 
   componentDidMount() {
@@ -40,6 +45,40 @@ class Suscripcion extends React.Component {
         console.log(error);
       });
   }
+  getFecha(userid) {
+    console.log(userid);
+    axios
+      .get(`https://localhost:44356/api/LastDate/${userid}`)
+      .then(res => {
+        const data = JSON.parse(res.data);
+        console.log("Repuesta de la ultima fecha");
+        console.log(data.end_date);
+        const ultimo_pago = data.end_date.substring(0, 10);
+        const fecha = ultimo_pago.split("-");
+        const dia = fecha[2];
+        const mes = fecha[1];
+        const año = fecha[0];
+        const pago = dia + "/" + mes + "/" + año;
+        this.setState({ pago });
+        this.isPayed(dia, mes, año);
+      })
+      .catch(error => {
+        const pagado = false;
+        this.setState({ pagado });
+        console.log(pagado);
+      });
+  }
+  isPayed(dia, mes, año) {
+    const expira = new Date(año, mes - 1, dia);
+    const hoy = new Date();
+    const pagado = true;
+    console.log(expira);
+    console.log(hoy);
+    if (expira < hoy) {
+      pagado = false;
+    }
+    this.setState({ pagado });
+  }
   getUsuario() {
     const data = JSON.parse(localStorage.getItem("data"));
     const usuario = data[0];
@@ -48,7 +87,9 @@ class Suscripcion extends React.Component {
     const apellido = usuario.last_name;
     const email = usuario.email;
     const telefono = usuario.phone_number;
-    this.setState({ ci, nombre, apellido, email, telefono });
+    const userid = usuario.user_id;
+    this.setState({ ci, nombre, apellido, email, telefono, userid });
+    this.getFecha(userid);
   }
   cambio() {
     const costos = this.state.costo / 6.96;
@@ -57,62 +98,26 @@ class Suscripcion extends React.Component {
     console.log(costosus);
   }
   render() {
-    return (
-      <div>
-        <h3>
-          <Badge variant='success'>Datos del Usuario</Badge>
-        </h3>
-        <Table responsive striped bordered hover size='dark' striped='true'>
-          <tbody>
-            <tr>
-              <th>NOMBRE: </th>
-              <th>
-                {this.state.nombre} {this.state.apellido}{" "}
-              </th>
-            </tr>
-            <tr>
-              <th>NUMERO DE DOCUMENTO: </th>
-              <th>{this.state.ci}</th>
-            </tr>
-            <tr>
-              <th>CORREO : </th>
-              <th>{this.state.email}</th>
-            </tr>
-            <tr>
-              <th>TELEFONO: </th>
-              <th>{this.state.telefono}</th>
-            </tr>
-          </tbody>
-        </Table>
-        <h3>
-          <Badge variant='danger'>Datos del Plan</Badge>
-        </h3>
-        <Table responsive striped bordered hover size='dark' striped='true'>
-          <tbody>
-            <tr>
-              <th>NOMBRE DEL PLAN: </th>
-              <th>{this.state.nombre_plan}</th>
-            </tr>
-            <tr>
-              <th>COSTO: </th>
-              <th>{this.state.costo} Bs.</th>
-            </tr>
-            <tr>
-              <th>DURACION : </th>
-              <th>{this.state.duracion} mes(es)</th>
-            </tr>
-            <tr>
-              <th>DETALLES: </th>
-              <th>{this.state.detalles}</th>
-            </tr>
-          </tbody>
-        </Table>
-        <h3>
-          <Badge variant='info'>Pagar con PayPal</Badge>
-        </h3>
-        <Paypal costo={this.state.costosus} />
-      </div>
-    );
+    if (this.state.pagado) {
+      return (
+        <div>
+          <h3>
+            <Badge variant='info'>
+              Aún estas tienes este plan activo, tu ultimo pago fue el{" "}
+              {this.state.pago}
+            </Badge>
+          </h3>
+          <Datos_Suscription state={this.state} />
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <Datos_Suscription state={this.state} />
+          <Paypal costo={this.state.costosus} userid={this.state.userid} />
+        </div>
+      );
+    }
   }
 }
 

@@ -98,6 +98,7 @@ class FormularioSign extends React.Component {
   submitHandler = e => {
     e.preventDefault();
     let esValido = this.validar();
+    console.log(this.state.fecha_nac);
     if (esValido) {
       axios
         .post("https://localhost:44356/api/myUser", {
