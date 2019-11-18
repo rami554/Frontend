@@ -15,7 +15,7 @@ import Logout from "./Componentes/Logout";
 import Perfil from "./Componentes/Perfil";
 import FormularioEditCuenta from "./Componentes/FormularioEditCuenta";
 import contratos from "./pages/Contratos/contratos";
-import incontratos from "./pages/incontratos";
+import incontratos from "./pages/Contratos/incontratos";
 import ListarCines from "./Componentes/ListarCines";
 import EditarCine from "./Componentes/EditarCine";
 import AgregarCine from "./Componentes/AgregarCine";
@@ -24,6 +24,7 @@ import NuevaContraseña from "./Componentes/NuevaContraseña";
 import Pruebpp from "./Componentes/Paypal";
 import Paypal from "./Componentes/Paypal";
 import Suscripcion from "./Componentes/Suscripcion";
+import Suscription from "./pages/Suscription";
 
 class App extends Component {
   render() {
@@ -52,6 +53,7 @@ class App extends Component {
               <Route path='/recpass' component={RecuperarContrasena} />
               <Route path='/newpass' component={NuevaContraseña} />
               <Route path='/suscripcion' component={Suscripcion} />
+              <Route path='/misuscripcion' component={Suscription}/>
             </Switch>
           </main>
           <Footer />

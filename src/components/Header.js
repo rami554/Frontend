@@ -19,6 +19,7 @@ class Header extends React.Component {
                 <ul>
                   <li><Link to='/'>Inicio</Link></li>
                   <li><Link to='/about'>Sobre Nosotros</Link></li>
+                  <li><Link to='/contact'>Contactos</Link></li>
                   <li><Link to='/planes'>Planes</Link></li>
                   <li><Link to='/Login'>Login</Link></li>
                 </ul>
@@ -46,7 +47,7 @@ class Header extends React.Component {
                   <li><Link to='/'>Inicio</Link></li>
                   <li><Link to='/about'>Sobre Nosotros</Link></li>
                   <li><Link to='/planes'>Planes</Link></li>
-                  <li><Link to='/perfil'>Perfil</Link></li>
+                  <li><Link to='/misuscripcion'>Perfil</Link></li>
                   <li><Link to='/login'>Logout</Link></li>
                 </ul>
               </div>
