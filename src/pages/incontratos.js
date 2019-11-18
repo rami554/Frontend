@@ -1,14 +1,15 @@
 import React from "react";
 import axios from "axios";
+import Header from "D:/Tsis-2019/Frontend/src/components/Header"
 const initialState = {
   start_date: "",
   end_date: "",
- // comments: "",
-  cinema: "Multicine",
+  comments: "",
+  cines: "",
   start_dateError: "",
   end_dateError: "",
   commentsError: "",
- // cinemaError: ""
+  cinesError: ""
 };
 class incontratos extends React.Component {
   state = initialState;
@@ -21,7 +22,7 @@ class incontratos extends React.Component {
     let start_dateError= "";
     let end_dateError= "";
     let commentsError= "";
-  //  let cinemaError= "";
+    let cinesError= "";
 
     if (!this.state.start_date) {
       start_dateError = "Este campo no puede estar vacio";
@@ -32,21 +33,21 @@ class incontratos extends React.Component {
     if (!this.state.comments) {
       commentsError = "Este campo no puede estar vacio";
     }
- /*   if (!this.state.cinema) {
-      cinemaError = "Este campo no puede estar vacio";
-    }*/
+    if (!this.state.cines) {
+      cinesError = "Este campo no puede estar vacio";
+    }
     
     if (
         start_dateError ||
         end_dateError ||
-        commentsError
-       // cinemaError    
+        commentsError ||
+        cinesError    
     ) {
       this.setState({
         start_dateError,
         end_dateError,
         commentsError,
-      //  cinemaError
+        cinesError
       });
       return false;
     }
@@ -56,12 +57,16 @@ class incontratos extends React.Component {
     e.preventDefault();
     let esValido = this.validar();
     if (esValido) {
+  const params ={
+    cinema:this.state.cines
+  }  
       axios
-        .post("https://localhost:44356/api/ContractDetail/?cinema=Multicine", {
+        .post("https://localhost:44356/api/ContractDetail"
+        , { params,
             start_date:this.state.start_date,
             end_date: this.state.end_date,
-            comments: this.state.comments,
-            //cinema: this.state.cinema
+            comments: this.state.comments
+           // cinema: this.state.cines
         })
         .then(response => {
           console.log(response);
@@ -72,10 +77,29 @@ class incontratos extends React.Component {
       console.log(this.state);
     }
   };
-
+/*Funcion Para llamar lista de cines
+constructor(props){
+  super(props);
+  this.state ={
+    cine:[]
+  }
+}  
+  getplanes() {
+    axios
+      .get("https://localhost:44356/api/Cinema")
+      .then(res => {
+        const cine = JSON.parse(res.data);
+        this.setState({ cine });
+        console.log(cine);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }*/
   render() {
     return (
       <div>
+        <Header />
         REGISTRAR CONTRATOS
         <form onSubmit={this.submitHandler}>
           <br></br>
@@ -113,16 +137,18 @@ class incontratos extends React.Component {
           <div style={{ fontSize: 12, color: "red" }}>
             {this.state.commentsError}
           </div>
-{/*}
-          <div>Cines</div>
+
           <select
-            name='cinema'
-            value={this.state.cinema}
-            onChange={e => this.state.change(e)}>
-            <option value='Hombre'>Multicine</option>
-            <option value='Mujer'>Megacenter</option>
+            name='cines'
+            value={this.state.cines}
+            onChange={e => this.change(e)}
+          >
+            <option>Seleccionar</option>
+            <option value='Multicine'>Multicine</option>
+            <option value='Megacenter'>Megacenter</option>
             <option value='Otro'>Otro</option>
-          </select>*/}
+          </select>
+            
 
           <br></br>
 

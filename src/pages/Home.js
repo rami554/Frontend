@@ -2,13 +2,15 @@ import React from "react";
 import it from "./it2.jpg";
 import joker from "./joker.jpg";
 import rambo from "./rambo.jpg";
-
+import Header from "../components/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Carousel } from "react-bootstrap";
 class Home extends React.Component {
   render() {
     return (
+      
       <body>
+        <Header />
         <div bgcolor='#000000'>
           <Carousel>
             <Carousel.Item>

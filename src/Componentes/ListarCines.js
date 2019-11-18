@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Header from "../components/Header";
 import {
   Button,
   Container,
@@ -44,6 +45,7 @@ class ListarCines extends Component {
   render() {
     return (
       <div>
+        <Header />
         <Container>
           <ListGroup variant='flush'>
             <ListGroup.Item variant='primary'>Datos del cine</ListGroup.Item>{" "}

@@ -3,6 +3,8 @@ import FormularioEditCuenta from "./FormularioEditCuenta";
 import { Button, Container, Row, ButtonToolbar, Badge } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Header from "../components/Header";
+
 class Perfil extends React.Component {
   state = { username: "", rol: "" };
   componentWillMount() {}
@@ -47,6 +49,7 @@ class Perfil extends React.Component {
     if (localStorage.getItem("isLogged") == "true") {
       return (
         <div>
+          <Header />
           <h3>
             <Badge variant='primary'>
               {" "}

@@ -3,6 +3,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Header from "../components/Header";
+
 const initialState = {
   username: "",
   password: "",
@@ -87,6 +89,7 @@ class FormularioLogin extends React.Component {
     if (localStorage.getItem("rol") == null) {
       return (
         <div>
+          <Header />
           INICIAR SESION
           <form onSubmit={this.submitHandler}>
             <div>

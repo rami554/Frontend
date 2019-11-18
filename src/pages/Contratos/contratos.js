@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import Header from "D:/Tsis-2019/Frontend/src/components/Header";
 
 export default class contratos extends Component {
   constructor(props){
@@ -27,8 +28,9 @@ export default class contratos extends Component {
   }
   render() {
         return (
+        
           <div class="container">
-          
+            <Header />
             <h3>CONTRATOS DE LOS CINES</h3>
             <hr/>
 

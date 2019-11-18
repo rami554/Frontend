@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
-import Header from "./components/Header";
+//import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -14,7 +14,7 @@ import Admin from "./Componentes/Admin";
 import Logout from "./Componentes/Logout";
 import Perfil from "./Componentes/Perfil";
 import FormularioEditCuenta from "./Componentes/FormularioEditCuenta";
-import contratos from "./pages/contratos";
+import contratos from "./pages/Contratos/contratos";
 import incontratos from "./pages/incontratos";
 import ListarCines from "./Componentes/ListarCines";
 import EditarCine from "./Componentes/EditarCine";
@@ -24,14 +24,12 @@ import NuevaContraseña from "./Componentes/NuevaContraseña";
 import Pruebpp from "./Componentes/Paypal";
 import Paypal from "./Componentes/Paypal";
 import Suscripcion from "./Componentes/Suscripcion";
+
 class App extends Component {
   render() {
     return (
       <Router>
         <div>
-          <div className='row justify-content-center'>
-            <Header />
-          </div>
           <main style={{ marginTop: "80px" }}>
             <Switch>
               <Route exact path='/' component={Home} />

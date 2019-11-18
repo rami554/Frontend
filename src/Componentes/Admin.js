@@ -5,6 +5,8 @@ import ListarCines from "./ListarCines";
 import { Container, Button, ButtonToolbar, Row, Badge } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Header from "../components/Header";
+
 class Admin extends React.Component {
   componentDidMount() {
     if (localStorage.getItem("cuentaCreada")) {
@@ -26,6 +28,7 @@ class Admin extends React.Component {
     if (localStorage.getItem("rol") == "1") {
       return (
         <div>
+          <Header />
           <h3>
             <Badge variant='primary'> PERFIL DE ADMINISTRADOR</Badge>
           </h3>
