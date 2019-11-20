@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
-import Header from "D:/Tsis-2019/Frontend/src/components/Header"
+import Header from "D:/Tsis-2019/Frontend/src/components/Header";
+import swal from 'sweetalert';
+
 const initialState = {
   start_date: "",
   end_date: "",
@@ -57,40 +59,39 @@ class incontratos extends React.Component {
     e.preventDefault();
     let esValido = this.validar();
     if (esValido) {
-  const params ={
-    cinema:this.state.cines
-  }  
+  
       axios
-        .post("https://localhost:44356/api/ContractDetail"
-        , { params,
+        .post("https://localhost:44356/api/ContractDetail/"+this.state.cines
+        ,{ 
             start_date:this.state.start_date,
             end_date: this.state.end_date,
-            comments: this.state.comments
-           // cinema: this.state.cines
+            comments: this.state.comments,     
         })
-        .then(response => {
-          console.log(response);
+        .then(response => { swal("Contrato Creado!", {
+          icon: "success",
+          });
         })
         .catch(error => {
-          console.log(error);
+          swal("Error!", "Falla al Crear Contrato", "error");
         });
       console.log(this.state);
     }
   };
 /*Funcion Para llamar lista de cines
-constructor(props){
-  super(props);
-  this.state ={
-    cine:[]
-  }
+constructor() {
+  super();
+   
+  this.state = {
+      schemas: []
+  } 
 }  
   getplanes() {
     axios
       .get("https://localhost:44356/api/Cinema")
       .then(res => {
-        const cine = JSON.parse(res.data);
-        this.setState({ cine });
-        console.log(cine);
+        const cinemas = JSON.parse(res.data);
+        this.setState({ cinemas });
+        console.log(cinemas);
       })
       .catch(error => {
         console.log(error);
@@ -148,8 +149,6 @@ constructor(props){
             <option value='Megacenter'>Megacenter</option>
             <option value='Otro'>Otro</option>
           </select>
-            
-
           <br></br>
 
           <button type='submit'>Registrarme</button>
