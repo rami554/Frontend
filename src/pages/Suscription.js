@@ -67,7 +67,7 @@ class Suscription extends React.Component {
                       this.editPerfil();
                     }}
                   >
-                    Editar mi perfil
+                    Active
                   </Button>
                 </ButtonToolbar>
               </Row>

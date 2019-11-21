@@ -3,6 +3,8 @@ import Paypal from "./Paypal";
 import axios from "axios";
 import { Table, Badge } from "react-bootstrap";
 import Datos_Suscription from "./Datos_Suscription";
+import Header from "../components/Header"
+
 class Suscripcion extends React.Component {
   state = {
     id_plan: "",
@@ -101,6 +103,7 @@ class Suscripcion extends React.Component {
     if (this.state.pagado) {
       return (
         <div>
+          <Header />
           <h3>
             <Badge variant='info'>
               Aún estas tienes este plan activo, tu ultimo pago fue el{" "}
@@ -113,6 +116,7 @@ class Suscripcion extends React.Component {
     } else {
       return (
         <div>
+          <Header />
           <Datos_Suscription state={this.state} />
           <Paypal costo={this.state.costosus} userid={this.state.userid} />
         </div>
