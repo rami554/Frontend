@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
-//import Header from "./components/Header";
+import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -25,6 +25,7 @@ import Pruebpp from "./Componentes/Paypal";
 import Paypal from "./Componentes/Paypal";
 import Suscripcion from "./Componentes/Suscripcion";
 import Suscription from "./pages/Suscription";
+import prueba from "./Componentes/prueba";
 
 class App extends Component {
   render() {
@@ -32,6 +33,7 @@ class App extends Component {
       <Router>
         <div>
           <main style={{ marginTop: "80px" }}>
+            <Header />
             <Switch>
               <Route exact path='/' component={Home} />
               <Route path='/about' component={About} />
@@ -53,7 +55,8 @@ class App extends Component {
               <Route path='/recpass' component={RecuperarContrasena} />
               <Route path='/newpass' component={NuevaContraseña} />
               <Route path='/suscripcion' component={Suscripcion} />
-              <Route path='/misuscripcion' component={Suscription}/>
+              <Route path='/misuscripcion' component={Suscription} />
+              <Route path='/prueba' component={prueba} />
             </Switch>
           </main>
           <Footer />

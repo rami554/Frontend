@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
-import Header from "D:/Tsis-2019/Frontend/src/components/Header";
-import swal from 'sweetalert';
+import Header from "../../components/Header";
+import swal from "sweetalert";
 
 const initialState = {
   start_date: "",
@@ -21,10 +21,10 @@ class incontratos extends React.Component {
     });
   };
   validar = () => {
-    let start_dateError= "";
-    let end_dateError= "";
-    let commentsError= "";
-    let cinesError= "";
+    let start_dateError = "";
+    let end_dateError = "";
+    let commentsError = "";
+    let cinesError = "";
 
     if (!this.state.start_date) {
       start_dateError = "Este campo no puede estar vacio";
@@ -38,13 +38,8 @@ class incontratos extends React.Component {
     if (!this.state.cines) {
       cinesError = "Este campo no puede estar vacio";
     }
-    
-    if (
-        start_dateError ||
-        end_dateError ||
-        commentsError ||
-        cinesError    
-    ) {
+
+    if (start_dateError || end_dateError || commentsError || cinesError) {
       this.setState({
         start_dateError,
         end_dateError,
@@ -59,16 +54,18 @@ class incontratos extends React.Component {
     e.preventDefault();
     let esValido = this.validar();
     if (esValido) {
-  
       axios
-        .post("https://localhost:44356/api/ContractDetail/"+this.state.cines
-        ,{ 
-            start_date:this.state.start_date,
+        .post(
+          "https://localhost:44356/api/ContractDetail/" + this.state.cines,
+          {
+            start_date: this.state.start_date,
             end_date: this.state.end_date,
-            comments: this.state.comments,     
-        })
-        .then(response => { swal("Contrato Creado!", {
-          icon: "success",
+            comments: this.state.comments
+          }
+        )
+        .then(response => {
+          swal("Contrato Creado!", {
+            icon: "success"
           });
         })
         .catch(error => {
@@ -77,7 +74,7 @@ class incontratos extends React.Component {
       console.log(this.state);
     }
   };
-/*Funcion Para llamar lista de cines
+  /*Funcion Para llamar lista de cines
 constructor() {
   super();
    
@@ -115,7 +112,7 @@ constructor() {
           <div style={{ fontSize: 12, color: "red" }}>
             {this.state.start_dateError}
           </div>
-          
+
           <div>Fecha de Conclucion</div>
           <input
             name='end_date'
@@ -128,7 +125,7 @@ constructor() {
             {this.state.end_dateError}
           </div>
 
-          <div>Comentarios</div> 
+          <div>Comentarios</div>
           <input
             name='comments'
             placeholder='comments'

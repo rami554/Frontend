@@ -1,15 +1,14 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import axios from 'axios';
-import Header from "D:/Tsis-2019/Frontend/src/components/Header";
-
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
+import axios from "axios";
+import Header from "../../components/Header";
 export default class contratos extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state ={
-      contratos:[]
-    }
-  }  
+    this.state = {
+      contratos: []
+    };
+  }
 
   componentDidMount() {
     this.getContratos();
@@ -27,45 +26,42 @@ export default class contratos extends Component {
       });
   }
   render() {
-        return (
-        
-          <div class="container">
-            <Header />
-            <h3>CONTRATOS DE LOS CINES</h3>
-            <hr/>
+    return (
+      <div class='container'>
+        <Header />
+        <h3>CONTRATOS DE LOS CINES</h3>
+        <hr />
 
-            <table class="table table-bordered order-table ">
-              <thead>
-                <tr>
-                  <th>Nombre</th>
-                  <th>Fecha de Inicio</th>
-                  <th>Fecha de Culminacion</th>
-                  <th>Estado del contrato</th>
-                  <th>Dias Restantes</th>
-                </tr>
-              </thead>
-              <tbody id="bodytable">
-                  {this.renderList()}
-              </tbody>
-            </table>
-          </div>
-        );
-    }
-renderList(){
-  return this.state.contratos.map((data)=>{
-    return(
-      <tr>
-        <td>{data.cinema_name}</td>
-        <td>{data.start_date}</td>
-        <td>{data.end_date}</td>
-        <td>{data.estado}</td>
-        <td>{data.time_difference}</td>
-      </tr>
-    )
-  })
-}
+        <table class='table table-bordered order-table '>
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Fecha de Inicio</th>
+              <th>Fecha de Culminacion</th>
+              <th>Estado del contrato</th>
+              <th>Dias Restantes</th>
+            </tr>
+          </thead>
+          <tbody id='bodytable'>{this.renderList()}</tbody>
+        </table>
+      </div>
+    );
+  }
+  renderList() {
+    return this.state.contratos.map(data => {
+      return (
+        <tr>
+          <td>{data.cinema_name}</td>
+          <td>{data.start_date}</td>
+          <td>{data.end_date}</td>
+          <td>{data.estado}</td>
+          <td>{data.time_difference}</td>
+        </tr>
+      );
+    });
+  }
 }
 
-if (document.getElementById('contratos')) {
-    ReactDOM.render(<contratos />, document.getElementById('contratos'));
+if (document.getElementById("contratos")) {
+  ReactDOM.render(<contratos />, document.getElementById("contratos"));
 }

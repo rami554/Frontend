@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PaypalExpressBtn from "react-paypal-express-checkout";
+import { PayPalButton } from "react-paypal-button-v2";
 import { Badge } from "react-bootstrap";
 import axios from "axios";
 class Paypal extends React.Component {
@@ -21,15 +21,17 @@ class Paypal extends React.Component {
     const user_id = this.props.userid;
     this.setState({ user_id, plan_id, fecha_inicio, fecha_fin });
     console.log(this.state);
+    console.log("Guardando Suscripcion");
     axios
       .post("https://localhost:44356/api/UserSubscription", {
         user_id: this.state.user_id,
-        suscription_id: this.state.plan_id,
+        subscription_id: this.state.plan_id,
         start_date: this.state.fecha_inicio,
         end_date: this.state.fecha_fin
       })
       .then(res => {
         console.log(res);
+        window.location.href = "/suscripcion";
       })
       .catch(error => {
         console.log(error);
@@ -59,11 +61,8 @@ class Paypal extends React.Component {
       // Congratulation, it came here means everything's fine!
       console.log("The payment was succeeded! Yay!", payment);
       // You can bind the "payment" object's value to your state or props or whatever here, please see below for sample returned data
-
       this.setSubscription();
-      //window.location.href = "/suscripcion";
     };
-
     const style = {
       size: "medium",
       color: "blue"
@@ -73,12 +72,18 @@ class Paypal extends React.Component {
         <h3>
           <Badge variant='info'>Pagar con PayPal</Badge>
         </h3>
-        <PaypalExpressBtn
-          client={client}
+        <PayPalButton
+          options={{
+            clientId:
+              "AQE4UBqDiakRdl-iRzC0UkCUYlT-4rzGUAgTE5TDnIndHPxPQCu9jaXniAenxb75lT0O5x56_qtmDnSf"
+          }}
+          onSuccess={(details, data) => {
+            console.log("Exitoso");
+            this.setSubscription();
+            //window.location.href = "/suscripcion";
+          }}
+          amount={this.props.costo}
           currency={"USD"}
-          total={this.props.costo}
-          onSuccess={onSuccess}
-          style={style}
         />
       </div>
     );
