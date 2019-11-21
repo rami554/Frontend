@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import Header from "D:/Tsis-2019/Frontend/src/components/Header";
+import Header from "../../components/Header";
 import swal from 'sweetalert';
 
 const initialState = {
