@@ -24,8 +24,8 @@ import NuevaContraseña from "./Componentes/NuevaContraseña";
 import Pruebpp from "./Componentes/Paypal";
 import Paypal from "./Componentes/Paypal";
 import Suscripcion from "./Componentes/Suscripcion";
-import Suscription from "./pages/Suscription";
-import prueba from "./Componentes/prueba";
+import infoSuscription from "./pages/infoSuscription";
+//import prueba from "./Componentes/prueba";
 
 class App extends Component {
   render() {
@@ -55,8 +55,8 @@ class App extends Component {
               <Route path='/recpass' component={RecuperarContrasena} />
               <Route path='/newpass' component={NuevaContraseña} />
               <Route path='/suscripcion' component={Suscripcion} />
-              <Route path='/misuscripcion' component={Suscription} />
-              <Route path='/prueba' component={prueba} />
+              <Route path='/misuscripcion' component={infoSuscription} />
+              {/*<Route path='/prueba' component={prueba} />*/}
             </Switch>
           </main>
           <Footer />

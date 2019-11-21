@@ -1,24 +1,21 @@
 import React from "react";
-import FormularioEditCuenta from "../Componentes/FormularioEditCuenta";
 import { Button, Container, Row, ButtonToolbar, Badge } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Header from "../components/Header";
+import {Col, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import axios from "axios";
+
+import Infoplan from "./Infoplan";
 
 class Suscription extends React.Component {
-  state = { username: "", rol: "" };
-  componentWillMount() {}
+  state = { username: "", rol: "",id_plan: "",
+  nombre_plan: "",
+  costo: "",
+  detalles: "",
+  duracion: ""};
   componentDidMount() {
-    console.log("se ha montado");
-    console.log("Se va a montar");
-    if (localStorage.getItem("init")) {
-      this.notify("Bienvenido");
-      localStorage.removeItem("init");
-    }
-    if (localStorage.getItem("edited")) {
-      this.notify("Datos editados correctamente");
-      localStorage.removeItem("edited");
-    }
+    this.getPlan();
     if (localStorage.getItem("isLogged")) {
       this.getData();
     } else {
@@ -39,43 +36,60 @@ class Suscription extends React.Component {
       this.props.history.push("/");
     }
   }
-  editPerfil() {
-    this.props.history.push("/editcuenta");
-  }
+  
   inicio() {
     this.props.history.push("/");
   }
+
+//Llamando los datos de planes y esstado de suscriptores
+getPlan() {
+  const id = localStorage.getItem("plan_id");
+  axios
+    .get(`https://localhost:44356/api/Subscription/${id}`)
+    .then(res => {
+      const planes = JSON.parse(res.data);
+      const id_plan = planes[0].subscription_id;
+      const nombre_plan = planes[0].name;
+      const costo = planes[0].cost;
+      const detalles = planes[0].details;
+      const duracion = planes[0].duration_months;
+      this.setState({ id_plan, nombre_plan, costo, detalles, duracion });
+      console.log(this.state);
+      this.cambio();
+    })
+    .catch(error => {
+      console.log(error);
+    });
+}
+
   render() {
     if (localStorage.getItem("isLogged") == "true") {
       return (
         <div>
           <Header />
           <h3>
-            <Badge variant='primary'>
-              {" "}
-              Plan de Suscripcion de  {this.state.username}!
-            </Badge>
+             Suscripcion de:  {this.state.username}
           </h3>
           <br></br>
           <div>
             <Container>
-              <Row>
-                <ButtonToolbar>
-                  <Button
-                    variant='warning'
-                    onClick={() => {
-                      this.editPerfil();
-                    }}
-                  >
-                    Active
-                  </Button>
-                </ButtonToolbar>
-              </Row>
-              <br></br>
+            <Infoplan state={this.state} />
+            <FormGroup row><Col><Button>
+                    Cambiar de Plan
+                  </Button></Col>
+                  <Col><Button >
+                    Congelar Plan
+                  </Button></Col>
+                  <Col><Button >
+                    Cancelar Plan
+                  </Button></Col>
+              </FormGroup>
             </Container>
             <ToastContainer />
           </div>
+          <h4>Historial de Pago</h4>
           <table class="table table-bordered order-table ">
+            
               <thead>
                 <tr>
                   <th>Nombre del Plan</th>
