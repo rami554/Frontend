@@ -1,5 +1,10 @@
 import React from "react";
 import axios from "axios";
+import Header from "../components/Header";
+
+import { Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Container } from "react-bootstrap";
+
 const initialState = {
   ci: "",
   nombre: "",
@@ -98,6 +103,7 @@ class FormularioSign extends React.Component {
   submitHandler = e => {
     e.preventDefault();
     let esValido = this.validar();
+    console.log(this.state.fecha_nac);
     if (esValido) {
       axios
         .post("https://localhost:44356/api/myUser", {
@@ -127,41 +133,48 @@ class FormularioSign extends React.Component {
 
   render() {
     return (
-      <div>
-        CREA TU CUENTA
+      <Container>
+      <Form ><Header />
+        <h3>CREA TU CUENTA</h3>
         <form onSubmit={this.submitHandler}>
-          <br></br>
-          <input
+        <FormGroup row>
+          <Col sm={6}>
+          <Input
             name='ci'
             type='number'
             placeholder='C.I'
             value={this.state.ci}
             onChange={e => this.change(e)}
-          ></input>
+          />
           <div style={{ fontSize: 12, color: "red" }}>{this.state.ciError}</div>
-
-          <input
+          </Col></FormGroup>
+          <FormGroup row>
+          <Col sm={6}>
+          <Input
             name='nombre'
             placeholder='Nombre'
             value={this.state.nombre}
             onChange={e => this.change(e)}
-          ></input>
+          />
           <div style={{ fontSize: 12, color: "red" }}>
             {this.state.nombreError}
-          </div>
-
-          <input
+          </div></Col></FormGroup>
+          <FormGroup row>
+          <Col sm={6}>
+          <Input
             name='apellido'
             placeholder='Apellido'
             value={this.state.apellido}
             onChange={e => this.change(e)}
-          ></input>
+          />
           <div style={{ fontSize: 12, color: "red" }}>
             {this.state.apellidoError}
-          </div>
+          </div></Col></FormGroup>
 
-          <div>Género</div>
-          <select
+          <Label>Género</Label>
+          <FormGroup row>
+          <Col sm={6}>
+          <Input type="select">
             name='genero'
             value={this.state.genero}
             onChange={e => this.change(e)}
@@ -169,22 +182,24 @@ class FormularioSign extends React.Component {
             <option value='Hombre'>Hombre</option>
             <option value='Mujer'>Mujer</option>
             <option value='Otro'>Otro</option>
-          </select>
-          <div></div>
+          </Input></Col></FormGroup>
 
-          <input
+          <FormGroup row>
+          <Col sm={6}>
+          <Input
             type='email'
             name='correo'
             placeholder='Correo'
             value={this.state.correo}
             onChange={e => this.change(e)}
-          ></input>
+          />
           <div style={{ fontSize: 12, color: "red" }}>
             {this.state.correoError}
-          </div>
-
-          <div>Fecha de nacimiento</div>
-          <input
+          </div></Col></FormGroup>
+          <FormGroup row>
+          <Col sm={6}>
+          <Label>Fecha de nacimiento</Label>
+          <Input
             name='fecha_nac'
             type='date'
             selected={this.state.startDate}
@@ -193,47 +208,51 @@ class FormularioSign extends React.Component {
           />
           <div style={{ fontSize: 12, color: "red" }}>
             {this.state.fecha_nacError}
-          </div>
-
-          <input
+          </div></Col></FormGroup>
+          <FormGroup row>
+          <Col sm={6}>
+          <Input
             type='number'
             name='telefono'
             placeholder='Telefono'
             value={this.state.teléfono}
             onChange={e => this.change(e)}
-          ></input>
+          />
           <div style={{ fontSize: 12, color: "red" }}>
             {this.state.telefonoError}
-          </div>
-
-          <input
+          </div></Col></FormGroup>
+          <FormGroup row>
+          <Col sm={6}>
+          <Input
             name='username'
             placeholder='Nombre de Usuario'
             value={this.state.username}
             onChange={e => this.change(e)}
-          ></input>
+          />
           <div style={{ fontSize: 12, color: "red" }}>
             {this.state.usernameError}
-          </div>
-
-          <input
+          </div></Col></FormGroup>
+          <FormGroup row>
+          <Col sm={6}>
+          <Input
             type='password'
             name='password'
             placeholder='Password'
             value={this.state.password}
             onChange={e => this.change(e)}
-          ></input>
+          />
           <div style={{ fontSize: 12, color: "red" }}>
             {this.state.passwordError}
           </div>
           <div style={{ fontSize: 12, color: "red" }}>
             {this.state.genError}
-          </div>
-          <br></br>
+          </div></Col>
+          </FormGroup>
 
-          <button type='submit'>Registrarme</button>
-        </form>
-      </div>
+          <Button type='submit'>Registrarme</Button>
+    </form>  
+    </Form>
+    </Container>
     );
   }
 }

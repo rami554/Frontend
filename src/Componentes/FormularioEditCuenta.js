@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import Header from "../components/Header";
 import {
   Button,
   Container,
@@ -108,6 +109,7 @@ class FormularioSign extends React.Component {
     if (localStorage.getItem("isLogged") == "true") {
       return (
         <div>
+          <Header />
           EDITAR TU CUENTA
           <form onSubmit={this.submitHandler}>
             <br></br>

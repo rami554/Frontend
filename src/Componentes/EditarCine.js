@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import Header from "../components/Header";
 import "react-toastify/dist/ReactToastify.css";
 import {
   Button,
@@ -142,6 +143,7 @@ class EditarCine extends React.Component {
   render() {
     return (
       <div>
+        <Header />
         <form onSubmit={this.submitHandler}>
           <h3>
             <Badge variant='primary'> EDITAR CINE</Badge>

@@ -5,10 +5,12 @@ import {
   Button,
 } from 'reactstrap';
 
+import Header from "../components/Header";
 class Contact extends React.Component {
   render() {
     return (
       <Container className="Contactos">
+        <Header />
         <h1>Contact</h1>
         <form className="form">
            <Col>
