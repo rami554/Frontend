@@ -25,6 +25,8 @@ import Pruebpp from "./Componentes/Paypal";
 import Paypal from "./Componentes/Paypal";
 import Suscripcion from "./Componentes/Suscripcion";
 import infoSuscription from "./pages/infoSuscription";
+import ListarPeliculas from "./Componentes/ListarPeliculas";
+import Peliculas from "./Componentes/Peliculas";
 //import prueba from "./Componentes/prueba";
 
 class App extends Component {
@@ -56,6 +58,8 @@ class App extends Component {
               <Route path='/newpass' component={NuevaContraseña} />
               <Route path='/suscripcion' component={Suscripcion} />
               <Route path='/misuscripcion' component={infoSuscription} />
+              <Route path='/listarpeliculas' component={ListarPeliculas} />
+              <Route path='/peliculas' component={Peliculas} />
               {/*<Route path='/prueba' component={prueba} />*/}
             </Switch>
           </main>

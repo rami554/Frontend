@@ -5,14 +5,15 @@ import rambo from "./rambo.jpg";
 import Header from "../components/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Carousel } from "react-bootstrap";
+import Peliculas from "../Componentes/ListarPeliculas";
+import ListarPeliculas from "../Componentes/ListarPeliculas";
 class Home extends React.Component {
   render() {
     return (
-      
       <body>
         <Header />
         <div bgcolor='#000000'>
-          <Carousel>
+          <Carousel fluid>
             <Carousel.Item>
               <img
                 className='d-block w-100'
@@ -55,6 +56,10 @@ class Home extends React.Component {
               </Carousel.Caption>
             </Carousel.Item>
           </Carousel>
+        </div>
+
+        <div>
+          <ListarPeliculas></ListarPeliculas>
         </div>
       </body>
     );
