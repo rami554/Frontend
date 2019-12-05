@@ -9,7 +9,7 @@ import axios from "axios";
 import Infoplan from "./Infoplan";
 
 class Suscription extends React.Component {
-  state = { username: "", rol: "",id_plan: "",
+  state = { user_id:"", username: "", rol: "",id_plan: "",
   nombre_plan: "",
   costo: "",
   detalles: "",
@@ -26,6 +26,7 @@ class Suscription extends React.Component {
   getData() {
     const data = JSON.parse(localStorage.getItem("data"));
     console.log(data);
+    const user_id =data[0].user_id;
     const username = data[0].first_name;
     const rol = data[0].rol;
     console.log(username);
@@ -56,6 +57,29 @@ getPlan() {
       this.setState({ id_plan, nombre_plan, costo, detalles, duracion });
       console.log(this.state);
       this.cambio();
+    })
+    .catch(error => {
+      console.log(error);
+    });
+}
+//Listar Historial de Pagos
+constructor(props) {
+  super(props);
+  this.state = {
+    gethistory: []
+  };
+}
+componentDidMount() {
+  this.getPagos();
+}
+getPagos() {
+  const id = localStorage.getItem("user_id");
+  axios
+    .get(`https://localhost:44356/api/GetHistory/1`)
+    .then(res => {
+      const contratos = JSON.parse(res.data);
+      this.setState({ contratos });
+      console.log(contratos);
     })
     .catch(error => {
       console.log(error);
@@ -95,9 +119,9 @@ getPlan() {
                   <th>Nombre del Plan</th>
                   <th>Fecha de Pago</th>
                   <th>Fecha de Culminacion</th>
-                  <th>Costo</th>
                 </tr>
               </thead>
+              <tbody id='bodytable'>{this.renderList()}</tbody>
             </table>
         </div>
       );
@@ -112,6 +136,18 @@ getPlan() {
         </div>
       );
     }
+  }
+  renderList() {
+    return this.state.gethistory.map(data => {
+      return (
+        <tr>
+          <td>{data.subscription_id}</td>
+          <td>{data.start_date}</td>
+          <td>{data.end_date}</td>
+          
+        </tr>
+      );
+    });
   }
 }
 
