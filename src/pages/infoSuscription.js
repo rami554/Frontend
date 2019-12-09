@@ -9,7 +9,7 @@ import axios from "axios";
 import Infoplan from "./Infoplan";
 
 class Suscription extends React.Component {
-  state = { user_id:"", username: "", rol: "",id_plan: "",
+  state = {username: "", rol: "",id_plan: "",
   nombre_plan: "",
   costo: "",
   detalles: "",
@@ -73,13 +73,12 @@ componentDidMount() {
   this.getPagos();
 }
 getPagos() {
-  const id = localStorage.getItem("user_id");
   axios
-    .get(`https://localhost:44356/api/GetHistory/1`)
+    .get("https://localhost:44356/api/GetHistory/1")
     .then(res => {
-      const contratos = JSON.parse(res.data);
-      this.setState({ contratos });
-      console.log(contratos);
+      const gethistory = JSON.parse(res.data);
+      this.setState({ gethistory });
+      console.log(gethistory);
     })
     .catch(error => {
       console.log(error);
