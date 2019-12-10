@@ -21,12 +21,12 @@ class Suscription extends React.Component {
     } else {
       this.props.history.push("/");
     }
+    this.getPagos();
   }
   notify = texto => toast(texto);
   getData() {
     const data = JSON.parse(localStorage.getItem("data"));
     console.log(data);
-    const user_id =data[0].user_id;
     const username = data[0].first_name;
     const rol = data[0].rol;
     console.log(username);
@@ -69,12 +69,10 @@ constructor(props) {
     gethistory: []
   };
 }
-componentDidMount() {
-  this.getPagos();
-}
 getPagos() {
+  const userid = localStorage.getItem("user_id");
   axios
-    .get("https://localhost:44356/api/GetHistory/1")
+    .get(`https://localhost:44356/api/GetHistory/${userid}`)
     .then(res => {
       const gethistory = JSON.parse(res.data);
       this.setState({ gethistory });
