@@ -4,6 +4,7 @@ import { Button, Container, Row, ButtonToolbar, Badge } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Header from "../components/Header";
+import ListarPeliculas from "./ListarPeliculas";
 
 class Perfil extends React.Component {
   state = { username: "", rol: "" };
@@ -78,20 +79,9 @@ class Perfil extends React.Component {
                 </ButtonToolbar>
               </Row>
               <br></br>
-              <Row>
-                <ButtonToolbar>
-                  <Button
-                    variant='info'
-                    onClick={() => {
-                      this.inicio();
-                    }}
-                  >
-                    Ir a la página principal
-                  </Button>
-                </ButtonToolbar>
-              </Row>
             </Container>
             <ToastContainer />
+            <ListarPeliculas></ListarPeliculas>
           </div>
         </div>
       );

@@ -30,7 +30,10 @@ class Admin extends React.Component {
         <div>
           <Header />
           <h3>
-            <Badge variant='primary'> PERFIL DE ADMINISTRADOR</Badge>
+            <Badge name='perfilAdmin' variant='primary'>
+              {" "}
+              PERFIL DE ADMINISTRADOR
+            </Badge>
           </h3>
           <Container>
             <Row>
@@ -49,6 +52,7 @@ class Admin extends React.Component {
             <Row>
               <ButtonToolbar>
                 <Button
+                  name='add'
                   variant='warning'
                   onClick={() => {
                     this.agregarCine();

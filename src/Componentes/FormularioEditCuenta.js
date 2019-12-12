@@ -110,7 +110,7 @@ class FormularioSign extends React.Component {
       return (
         <div>
           <Header />
-          EDITAR TU CUENTA
+          <a name='edit'>EDITAR TU CUENTA</a>
           <form onSubmit={this.submitHandler}>
             <br></br>
             <h5>
