@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Header from "../components/Header";
 import {Col, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import axios from "axios";
+import swal from "sweetalert";
 
 import Infoplan from "./Infoplan";
 
@@ -22,15 +23,17 @@ class Suscription extends React.Component {
       this.props.history.push("/");
     }
     this.getPagos();
+    this.getData();
   }
   notify = texto => toast(texto);
   getData() {
     const data = JSON.parse(localStorage.getItem("data"));
     console.log(data);
+    const user_id =data[0].user_id;
     const username = data[0].first_name;
     const rol = data[0].rol;
     console.log(username);
-    this.setState({ username, rol });
+    this.setState({ username, rol});
   }
   logout() {
     if (!this.state.isLogged) {
@@ -69,10 +72,10 @@ constructor(props) {
     gethistory: []
   };
 }
-getPagos() {
-  const userid = localStorage.getItem("user_id");
+getPagos(user_id) {
+  const userid = localStorage.getItem("user_id")
   axios
-    .get(`https://localhost:44356/api/GetHistory/${userid}`)
+    .get(`https://localhost:44356/api/GetHistory/3`)
     .then(res => {
       const gethistory = JSON.parse(res.data);
       this.setState({ gethistory });
@@ -81,6 +84,38 @@ getPagos() {
     .catch(error => {
       console.log(error);
     });
+}
+//Congelar Plan
+Congelar() { 
+  const userid = localStorage.getItem("user_id")
+  axios
+    .post("https://localhost:44356/api/FreezeSubscription" , { 
+        user_id:userid   
+    })
+    .then(response => { swal("Subscripsion Congelada!", {
+      icon: "success",
+      });
+    })
+    .catch(error => {
+      swal("Error!", "Falla al Congelar Contrato", "error");
+    });
+  console.log(this.state);
+}
+//COnsulta CAncelar Plan
+Cancelar(){ 
+  const userid = localStorage.getItem("user_id")
+  axios
+    .post("https://localhost:44356/api/CanceSub" , { 
+        user_id:userid   
+    })
+    .then(response => { swal("Subscripsion Cancelada!", {
+      icon: "success",
+      });
+    })
+    .catch(error => {
+      swal("Error!", "Falla al Cancelar Contrato", "error");
+    });
+  console.log(this.state);
 }
 
   render() {
@@ -98,10 +133,10 @@ getPagos() {
             <FormGroup row><Col><Button>
                     Cambiar de Plan
                   </Button></Col>
-                  <Col><Button >
+                  <Col><Button onChange="Congelar()">
                     Congelar Plan
                   </Button></Col>
-                  <Col><Button >
+                  <Col><Button onClick="Cancelar()">
                     Cancelar Plan
                   </Button></Col>
               </FormGroup>
