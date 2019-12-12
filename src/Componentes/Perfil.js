@@ -20,6 +20,14 @@ class Perfil extends React.Component {
       this.notify("Datos editados correctamente");
       localStorage.removeItem("edited");
     }
+    if (localStorage.getItem("canjeado")) {
+      this.notify("Solicitud procesada correctamente!");
+      localStorage.removeItem("datosCanjeo");
+      localStorage.removeItem("isCanjeo");
+      localStorage.removeItem("edited");
+      localStorage.removeItem("canjeado");
+      localStorage.removeItem("canjeadoCorrecto");
+    }
     if (localStorage.getItem("isLogged")) {
       this.getData();
     } else {

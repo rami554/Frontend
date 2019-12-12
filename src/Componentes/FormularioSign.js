@@ -182,9 +182,12 @@ class FormularioSign extends React.Component {
             <Label>Género</Label>
             <FormGroup row>
               <Col sm={6}>
-                <Input type='select'>
-                  name='genero' value={this.state.genero}
-                  onChange={e => this.change(e)}>
+                <Input
+                  type='select'
+                  name='genero'
+                  value={this.state.genero}
+                  onChange={e => this.change(e)}
+                >
                   <option value='Hombre'>Hombre</option>
                   <option value='Mujer'>Mujer</option>
                   <option value='Otro'>Otro</option>

@@ -11,18 +11,44 @@ import {
   Table,
   Button
 } from "react-bootstrap";
-
+import { Input } from "reactstrap";
 class Funciones extends React.Component {
   state = {
     funciones: [],
-    idPelicula: ""
+    idPelicula: "",
+    AvailableCinemas: [],
+    cines: "Multicine"
+  };
+  change = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+    console.log(this.state.cines);
   };
   componentDidMount() {
     const idPelicula = localStorage.getItem("idPelicula");
     console.log(idPelicula);
     if (idPelicula) {
       this.getScreenings(idPelicula);
+      this.getPelicula(idPelicula);
     }
+  }
+  getPelicula(id) {
+    axios
+      .get(`https://localhost:44356/api/Movie/${id}`)
+      .then(res => {
+        const pelicula = res.data;
+        this.setState({ pelicula });
+        console.log(this.state);
+        const AvailableCinemas = pelicula.AvailableCinemas;
+        this.setState({ AvailableCinemas });
+        const cines = AvailableCinemas.disponible[0];
+        this.setState({ cines });
+        console.log(this.state.AvailableCinemas);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
   getScreenings(id) {
     axios
@@ -35,6 +61,22 @@ class Funciones extends React.Component {
       .catch(error => {
         console.log(error);
       });
+  }
+  Canjear(hora, sala, cine, idScreening) {
+    const info = JSON.parse(localStorage.getItem("data"));
+    const nombre = info[0].first_name;
+    const apellido = info[0].last_name;
+    const nombreCompleto = nombre + " " + apellido;
+    const data = {
+      hora: hora,
+      sala: sala,
+      cine: cine,
+      nombre: nombreCompleto,
+      idScreening: idScreening
+    };
+    localStorage.setItem("datosCanjeo", JSON.stringify(data));
+    localStorage.setItem("isCanjeo", true);
+    window.location.href = "/canjeo";
   }
   render() {
     return (
@@ -55,6 +97,8 @@ class Funciones extends React.Component {
                 <tr>
                   <td> Nro de Sala</td>
                   <td> Horario</td>
+
+                  <td> Escoger cine </td>
                   <td> Conseguir tickets</td>
                 </tr>
                 {this.state.funciones.map(funcion => (
@@ -62,7 +106,31 @@ class Funciones extends React.Component {
                     <td> {funcion.auditorium_id}</td>
                     <td> {funcion.time}</td>
                     <td>
-                      <Button variant='success'>Canjear</Button>{" "}
+                      <Input
+                        type='select'
+                        name='cines'
+                        value={this.state.cines}
+                        onChange={e => this.change(e)}
+                      >
+                        {this.state.AvailableCinemas.map(disponible => (
+                          <option value={disponible}>{disponible}</option>
+                        ))}
+                      </Input>
+                    </td>
+                    <td>
+                      <Button
+                        variant='success'
+                        onClick={() =>
+                          this.Canjear(
+                            funcion.time,
+                            funcion.auditorium_id,
+                            this.state.cines,
+                            funcion.screening_id
+                          )
+                        }
+                      >
+                        Canjear
+                      </Button>{" "}
                     </td>
                   </tr>
                 ))}

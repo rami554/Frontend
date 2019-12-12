@@ -28,7 +28,8 @@ import infoSuscription from "./pages/infoSuscription";
 import ListarPeliculas from "./Componentes/ListarPeliculas";
 import Peliculas from "./Componentes/Peliculas";
 //import prueba from "./Componentes/prueba";
-import Qr from "./pages/QR/Qr"
+import Qr from "./pages/QR/Qr";
+import PantallaCanjeo from "./Componentes/PantallaCanjeo";
 
 class App extends Component {
   render() {
@@ -62,6 +63,7 @@ class App extends Component {
               <Route path='/listarpeliculas' component={ListarPeliculas} />
               <Route path='/peliculas' component={Peliculas} />
               <Route path='/qr' component={Qr} />
+              <Route path='/canjeo' component={PantallaCanjeo} />
               {/*<Route path='/prueba' component={prueba} />*/}
             </Switch>
           </main>

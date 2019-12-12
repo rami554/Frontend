@@ -59,6 +59,7 @@ class Peliculas extends React.Component {
       this.getPelicula(idPelicula);
       this.getScreenings(idPelicula);
       localStorage.removeItem("idPelicula");
+      localStorage.setItem("idPelicula2", idPelicula);
     } else {
       window.location.href = "/";
     }
@@ -123,7 +124,6 @@ class Peliculas extends React.Component {
                 </Media.Body>
               </Media>
             </Row>
-
             <Row>
               <Funciones />
             </Row>
