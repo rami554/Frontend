@@ -25,24 +25,7 @@ class About extends React.Component {
                 <div class="col-md-5 col-sm-6 col-xs-12">
                     <div class="feature">
                         <div class="feature-box">
-                            <div class="clearfix">
-                                <div class="iconset">
-                                    <span class="glyphicon glyphicon-cog icon"></span>
-                                </div>
-                                <div class="feature-content">
-                                    <h4>ANUNCIANTES</h4>
-                                    <p>Exhibe tus productos y servicios en cualquiera de nuestros portales regionales o en todos a la vez. Tenemos múltiples plataformas y formatos que se adaptan a todo tipo de productos. Vincula tu marca a una película en cartelera o un próximo estreno y aprovecha el ruido mediático y tráfico adicional que viene con la promoción de la película.</p>
-                                </div>
-                            </div>
-                            <div class="clearfix">
-                                <div class="iconset">
-                                    <span class="glyphicon glyphicon-cog icon"></span>
-                                </div>
-                                <div class="feature-content">
-                                    <h4>DISTRIBUIDORES</h4>
-                                    <p>Publicitar películas en Moviepass es altamente efectivo. A diferencia de otros medios, nuestro negocio es el cine. No hay mejor sitio para dar a conocer una película que aquel donde se puedan comprar entradas. Ponemos a tu disposición herramientas de inteligencia de negocio de la industria del cine que ningún otro sitio puede ofrecer.</p>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>

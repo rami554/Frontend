@@ -87,10 +87,10 @@ getPagos(user_id) {
 }
 //Congelar Plan
 Congelar() { 
-  const userid = localStorage.getItem("user_id")
+  const userid = localStorage.getItem("user_id");
   axios
     .post("https://localhost:44356/api/FreezeSubscription" , { 
-        user_id:userid   
+        user_id:userid 
     })
     .then(response => { swal("Subscripsion Congelada!", {
       icon: "success",
@@ -133,10 +133,10 @@ Cancelar(){
             <FormGroup row><Col><Button>
                     Cambiar de Plan
                   </Button></Col>
-                  <Col><Button onChange="Congelar()">
+                  <Col><Button onClick={()=>this.Congelar()}>
                     Congelar Plan
                   </Button></Col>
-                  <Col><Button onClick="Cancelar()">
+                  <Col><Button onClick={()=>this.Cancelar()}>
                     Cancelar Plan
                   </Button></Col>
               </FormGroup>
