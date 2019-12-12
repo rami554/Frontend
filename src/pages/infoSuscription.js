@@ -16,9 +16,7 @@ class Suscription extends React.Component {
   detalles: "",
   duracion: "",userid:""};
   componentDidMount() {
-    this.getPlan();
     this.getData();
-    this.getPagos();
   }
   getData() {
     const data = JSON.parse(localStorage.getItem("data"));
@@ -29,8 +27,6 @@ class Suscription extends React.Component {
     console.log(username);
     this.setState({ username, rol});
     this.getPagos(userid);
-    this.Cancelar(userid);
-    this.Congelar(userid);
   }
   logout() {
     if (!this.state.isLogged) {
@@ -39,20 +35,19 @@ class Suscription extends React.Component {
   }
 
 //Llamando los datos de planes y esstado de suscriptores
-getPlan() {
-  const id = localStorage.getItem("plan_id");
+getPlan(id) {
+  //console.log(id);
+  //const id = localStorage.getItem("plan_id");
   axios
     .get(`https://localhost:44356/api/Subscription/${id}`)
     .then(res => {
       const planes = JSON.parse(res.data);
-      const id_plan = planes[0].subscription_id;
       const nombre_plan = planes[0].name;
       const costo = planes[0].cost;
       const detalles = planes[0].details;
       const duracion = planes[0].duration_months;
-      this.setState({ id_plan, nombre_plan, costo, detalles, duracion });
+      this.setState({nombre_plan, costo, detalles, duracion });
       console.log(this.state);
-      this.cambio();
     })
     .catch(error => {
       console.log(error);
@@ -67,12 +62,14 @@ constructor(props) {
 }
 getPagos(userid) {
   //const userid = localStorage.getItem("user_id")
-  console.log(userid);
+  //console.log(userid);
   axios
     .get(`https://localhost:44356/api/GetHistory/${userid}`)
     .then(res => {
       const gethistory = JSON.parse(res.data);
+      const id = gethistory[0].subscription_id;
       this.setState({ gethistory });
+      this.getPlan(id);
       console.log(gethistory);
     })
     .catch(error => {
@@ -81,11 +78,15 @@ getPagos(userid) {
 }
 
 //Congelar Plan
-Congelar(userid) {
-  console.log(userid); 
+Congelar() {
+  const data = JSON.parse(localStorage.getItem("data"));
+    console.log(data);
+    const userid =data[0].user_id;
+  //const userid = localStorage.getItem("user_id")
+  //console.log(userid); 
   axios
     .post("https://localhost:44356/api/FreezeSubscription" , { 
-        user_id:userid 
+        user_id:userid
     })
     .then(response => { swal("Subscripsion Congelada!", {
       icon: "success",
@@ -94,15 +95,17 @@ Congelar(userid) {
     .catch(error => {
       swal("Error!", "Falla al Congelar Contrato", "error");
     });
-  console.log(this.state);
 }
 //COnsulta CAncelar Plan
-Cancelar(userid){ 
-  //const userid = localStorage.getItem("user_id")
-  console.log(userid)
+Cancelar(){ 
+  const data = JSON.parse(localStorage.getItem("data"));
+    console.log(data);
+    const userid =data[0].user_id;
+  //const userid = localStorage.getItem("userid");
+  //console.log(userid)
   axios
-    .post("https://localhost:44356/api/CanceSub" , { 
-        user_id:userid   
+    .post("https://localhost:44356/api/CancelSub" , { 
+        user_id:userid  
     })
     .then(response => { swal("Subscripsion Cancelada!", {
       icon: "success",
@@ -111,7 +114,6 @@ Cancelar(userid){
     .catch(error => {
       swal("Error!", "Falla al Cancelar Contrato", "error");
     });
-  console.log(this.state);
 }
 
   render() {
