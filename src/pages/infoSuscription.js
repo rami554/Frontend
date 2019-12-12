@@ -14,35 +14,28 @@ class Suscription extends React.Component {
   nombre_plan: "",
   costo: "",
   detalles: "",
-  duracion: ""};
+  duracion: "",userid:""};
   componentDidMount() {
     this.getPlan();
-    if (localStorage.getItem("isLogged")) {
-      this.getData();
-    } else {
-      this.props.history.push("/");
-    }
-    this.getPagos();
     this.getData();
+    this.getPagos();
   }
-  notify = texto => toast(texto);
   getData() {
     const data = JSON.parse(localStorage.getItem("data"));
     console.log(data);
-    const user_id =data[0].user_id;
+    const userid =data[0].user_id;
     const username = data[0].first_name;
     const rol = data[0].rol;
     console.log(username);
     this.setState({ username, rol});
+    this.getPagos(userid);
+    this.Cancelar(userid);
+    this.Congelar(userid);
   }
   logout() {
     if (!this.state.isLogged) {
       this.props.history.push("/");
     }
-  }
-  
-  inicio() {
-    this.props.history.push("/");
   }
 
 //Llamando los datos de planes y esstado de suscriptores
@@ -72,10 +65,11 @@ constructor(props) {
     gethistory: []
   };
 }
-getPagos(user_id) {
-  const userid = localStorage.getItem("user_id")
+getPagos(userid) {
+  //const userid = localStorage.getItem("user_id")
+  console.log(userid);
   axios
-    .get(`https://localhost:44356/api/GetHistory/3`)
+    .get(`https://localhost:44356/api/GetHistory/${userid}`)
     .then(res => {
       const gethistory = JSON.parse(res.data);
       this.setState({ gethistory });
@@ -85,12 +79,13 @@ getPagos(user_id) {
       console.log(error);
     });
 }
+
 //Congelar Plan
-Congelar() { 
-  const userid = localStorage.getItem("user_id")
+Congelar(userid) {
+  console.log(userid); 
   axios
     .post("https://localhost:44356/api/FreezeSubscription" , { 
-        user_id:userid   
+        user_id:userid 
     })
     .then(response => { swal("Subscripsion Congelada!", {
       icon: "success",
@@ -102,8 +97,9 @@ Congelar() {
   console.log(this.state);
 }
 //COnsulta CAncelar Plan
-Cancelar(){ 
-  const userid = localStorage.getItem("user_id")
+Cancelar(userid){ 
+  //const userid = localStorage.getItem("user_id")
+  console.log(userid)
   axios
     .post("https://localhost:44356/api/CanceSub" , { 
         user_id:userid   
@@ -133,10 +129,10 @@ Cancelar(){
             <FormGroup row><Col><Button>
                     Cambiar de Plan
                   </Button></Col>
-                  <Col><Button onChange="Congelar()">
+                  <Col><Button onClick={()=>this.Congelar()}>
                     Congelar Plan
                   </Button></Col>
-                  <Col><Button onClick="Cancelar()">
+                  <Col><Button onClick={()=>this.Cancelar()}>
                     Cancelar Plan
                   </Button></Col>
               </FormGroup>
